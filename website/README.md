@@ -1,26 +1,20 @@
-# QuickTile public pages
+# QuickTile website
 
-These dependency-free pages use original vector geometry, system fonts, local assets, and no tracking. The support and privacy repositories are explicitly separate from the app source repository. Release-download buttons are omitted until real URLs are configured.
+The website lives alongside the application in https://github.com/sqhil-a/quicktile. GitHub Pages publishes one site with support and privacy subpages:
 
-`config.json` owns the production destinations. Its `repositoryURL` is reserved for the **application source**, and is intentionally empty; `supportRepositoryURL` is the issue tracker. No fake download or source links are generated.
+- https://sqhil-a.github.io/quicktile/
+- https://sqhil-a.github.io/quicktile/support.html
+- https://sqhil-a.github.io/quicktile/privacy.html
 
-Build and validate both configured publication outputs without publishing:
+`config.json` owns production links, contact details and the application issue tracker. Download buttons remain hidden until signed release URLs exist. Pages use system fonts, local CSS/vector assets and no tracking.
+
+Build and validate without publishing:
 
 ```sh
-python3 Scripts/build-website.py --site support --mode publish
-python3 Scripts/verify-website.py --site .build/website/support --publish
-python3 Scripts/build-website.py --site privacy --mode publish
-python3 Scripts/verify-website.py --site .build/website/privacy --publish
+python3 Scripts/build-website.py --site support --mode publish --output .build/public-site
+python3 Scripts/verify-website.py --site .build/public-site --publish
 ```
 
-The support site's root is a small directory with setup/privacy navigation and a real contact. The privacy site's root shows the policy. Navigation and canonical metadata cross-link the official support and privacy pages, while all local asset paths remain safe under a GitHub Pages project path.
+The `.github/workflows/pages.yml` workflow performs these checks and deploys only generated static files. Application source, signing files and build metadata are never included in the website artifact. The older standalone exporter is optional tooling, not the production deployment route.
 
-Export verified publication outputs into the standalone documentation folders with
-`python3 Scripts/export-website-folders.py`. Use `--dry-run` to inspect destinations.
-The exporter does not initialize Git or publish; it refuses to overwrite unknown or
-locally modified files. The standalone Pages workflow uploads only static pages and
-assets, excluding repository documentation and export metadata.
-
-For a local draft with incomplete destinations, use `--mode draft` and omit `--publish` from verification. Drafts disable search indexing and publication verification rejects them. The scripts never upload content or make network requests.
-
-Visual review is separate from structural verification. Check desktop/mobile, light/dark appearance, keyboard focus, zoom, text wrapping, and the final hosted paths before publication. No app-store approval or vendor-action validation is implied by this site.
+Visual review is separate from structural verification. Check mobile/desktop, light/dark appearance, focus, zoom and wrapping. Website publication does not imply App Store approval.

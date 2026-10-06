@@ -22,7 +22,7 @@ This package prepares the iPhone listing and reviewer workflow. It does not repr
 | Review contact | Confirmed email: `sahilambegaonkar@gmail.com`; publisher supplies legal name and phone in international format privately in App Store Connect |
 | Release | Select manual release when preparing the first submission; no upload or release is authorized by this document |
 
-The publisher supplied separate [support website](https://github.com/sqhil-a/quicktile) and [privacy website](https://github.com/sqhil-a/quicktile) repositories. They are website repositories, not the application's source repository. The iPhone Settings screen includes an offline privacy policy, an HTTPS support link, and a policy web link using the prepared URLs above. Both pages are published on GitHub Pages and return HTTPS 200. The source repository is https://github.com/sqhil-a/quicktile. A signed companion download remains pending.
+The application, support site and privacy policy are maintained together in https://github.com/sqhil-a/quicktile. The iPhone Settings screen links to the unified GitHub Pages subpages and includes an offline policy. A signed companion download remains pending.
 
 Promotional text:
 

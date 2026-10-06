@@ -50,7 +50,7 @@ The false encryption declaration reflects the current reviewed implementation: T
 
 ## Website and listing preparation
 
-Dependency-free support/privacy pages are prepared in [website](../website/README.md), with local publication-format outputs under `.build/website/support` and `.build/website/privacy`. Verified static files were exported into `/Users/sahil/Documents/Development/quicktile-support` and `/Users/sahil/Documents/Development/quicktile-privacy`. The export does not initialize Git, push, or enable Pages. The support and privacy repositories are separate documentation sites; neither is claimed to host the application source.
+Dependency-free support/privacy pages are maintained in [website](../website/README.md) inside the application repository. The unified GitHub Pages workflow publishes a home page plus support and privacy subpages. The former standalone documentation sites are retired.
 
 Browser review at **320, 390, and 1280 pixels**, in light and dark appearance, found no horizontal overflow and confirmed the support disclosure/accordion behavior. Latest reviewed support page: [final site](../.build/website/screenshots/final-site.jpg). Earlier screenshots: [desktop light](../.build/website/screenshots/support-desktop-light.jpg) and [phone dark](../.build/website/screenshots/support-phone-dark.jpg). These are website previews, not screenshots for an App Store listing.
 

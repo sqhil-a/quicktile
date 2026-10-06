@@ -8,7 +8,7 @@ Recorded October 5, 2026. This is release evidence, not an App Store approval cl
 - Privacy: https://sqhil-a.github.io/quicktile/privacy.html
 - Application source: https://github.com/sqhil-a/quicktile
 
-The application source was published at commit `4d9a0ed3034346479179e59c84ead8019dfe435a`. A credential-pattern scan passed; build artifacts, API keys, signing material and provisioning profiles are excluded from Git. Both website repositories deploy through GitHub Actions. Initial deployments succeeded; all HTML, CSS, mark, robots and sitemap URLs returned HTTPS 200. Published HTML matched the verified local files. Prior local visual review covered 320, 390 and 1280 pixels, light/dark appearance. The subsequent remote browser preview was denied by browser access policy; it was not bypassed.
+The application source was published at commit `4d9a0ed3034346479179e59c84ead8019dfe435a`. A credential-pattern scan passed; build artifacts, API keys, signing material and provisioning profiles are excluded from Git. The website now deploys from the application repository through `.github/workflows/pages.yml`. Support and privacy are subpages; the standalone sites are retired. Initial standalone deployment checks passed; the consolidated site has its own build and verification gate. Prior local visual review covered 320, 390 and 1280 pixels, light/dark appearance. The subsequent remote browser preview was denied by browser access policy; it was not bypassed.
 
 ## iPhone distribution package
 
