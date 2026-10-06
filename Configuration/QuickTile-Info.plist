@@ -4,8 +4,8 @@
 <key>NSMicrophoneUsageDescription</key><string>Listen while you record a voice command for your Mac. Audio stays on your iPhone.</string>
 <key>NSSpeechRecognitionUsageDescription</key><string>Transcribe your voice command on your iPhone before sending the words to Groq.</string>
 <key>NSCameraUsageDescription</key><string>Scan the pairing QR shown by QuickTile on your Mac.</string>
-<key>QuickTilePrivacyURL</key><string>https://sqhil-a.github.io/quicktile-privacy/privacy.html</string>
-<key>QuickTileSupportURL</key><string>https://sqhil-a.github.io/quicktile-support/support.html</string>
+<key>QuickTilePrivacyURL</key><string>https://sqhil-a.github.io/quicktile/privacy.html</string>
+<key>QuickTileSupportURL</key><string>https://sqhil-a.github.io/quicktile/support.html</string>
 <key>QuickTileSupportEmail</key><string>sahilambegaonkar@gmail.com</string>
 <key>ITSAppUsesNonExemptEncryption</key><false/>
 <key>UTExportedTypeDeclarations</key><array><dict>

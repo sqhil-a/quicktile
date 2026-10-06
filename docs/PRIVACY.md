@@ -1,6 +1,6 @@
 # QuickTile privacy policy
 
-QuickTile is free, open source, and uses a local connection between an iPhone and a Mac. It has no QuickTile account, advertising, subscription, or analytics upload. Optional voice interpretation uses the user’s Groq account. This document describes the current source as of October 4, 2026. Its prepared public location is the [privacy policy page](https://sqhil-a.github.io/quicktile-privacy/privacy.html); publication and public reachability must be verified before App Store submission. iPhone Settings includes an offline policy so the disclosure is available without the website.
+QuickTile is free, open source, and uses a local connection between an iPhone and a Mac. It has no QuickTile account, advertising, subscription, or analytics upload. Optional voice interpretation uses the user’s Groq account. This document describes the current source as of October 4, 2026. Its prepared public location is the [privacy policy page](https://sqhil-a.github.io/quicktile/privacy.html); publication and public reachability must be verified before App Store submission. iPhone Settings includes an offline policy so the disclosure is available without the website.
 
 ## Data on your devices
 
@@ -32,7 +32,7 @@ Performance signposts remain in the local system logging tools and contain no ac
 
 ## Contact
 
-For support or privacy questions, email [sahilambegaonkar@gmail.com](mailto:sahilambegaonkar@gmail.com). When you email support, the recipient receives your email address and the details you choose to send; QuickTile does not automatically attach diagnostics or local records. Send only the information needed to describe the issue. The [support page](https://sqhil-a.github.io/quicktile-support/support.html) is configured in the app; its publication and public reachability are still pending.
+For support or privacy questions, email [sahilambegaonkar@gmail.com](mailto:sahilambegaonkar@gmail.com). When you email support, the recipient receives your email address and the details you choose to send; QuickTile does not automatically attach diagnostics or local records. Send only the information needed to describe the issue. The [support page](https://sqhil-a.github.io/quicktile/support.html) is configured in the app; its publication and public reachability are still pending.
 
 ## Submission declarations
 

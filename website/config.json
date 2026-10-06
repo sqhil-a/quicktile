@@ -1,12 +1,12 @@
 {
   "repositoryURL": "https://github.com/sqhil-a/quicktile",
-  "supportRepositoryURL": "https://github.com/sqhil-a/quicktile-support",
-  "privacyRepositoryURL": "https://github.com/sqhil-a/quicktile-privacy",
+  "supportRepositoryURL": "https://github.com/sqhil-a/quicktile",
+  "privacyRepositoryURL": "https://github.com/sqhil-a/quicktile",
   "supportEmail": "sahilambegaonkar@gmail.com",
   "macDownloadURL": "",
   "appStoreURL": "",
-  "siteURL": "https://sqhil-a.github.io/quicktile-support/",
-  "privacySiteURL": "https://sqhil-a.github.io/quicktile-privacy/",
-  "supportURL": "https://sqhil-a.github.io/quicktile-support/support.html",
-  "privacyURL": "https://sqhil-a.github.io/quicktile-privacy/privacy.html"
+  "siteURL": "https://sqhil-a.github.io/quicktile/",
+  "privacySiteURL": "https://sqhil-a.github.io/quicktile/",
+  "supportURL": "https://sqhil-a.github.io/quicktile/support.html",
+  "privacyURL": "https://sqhil-a.github.io/quicktile/privacy.html"
 }

@@ -39,8 +39,8 @@ Both unsigned archives have version **1.0**, build **1**; the Apple Development-
 
 | Field | Archived value |
 |---|---|
-| Privacy URL | `https://sqhil-a.github.io/quicktile-privacy/privacy.html` |
-| Support URL | `https://sqhil-a.github.io/quicktile-support/support.html` |
+| Privacy URL | `https://sqhil-a.github.io/quicktile/privacy.html` |
+| Support URL | `https://sqhil-a.github.io/quicktile/support.html` |
 | Support email | `sahilambegaonkar@gmail.com` |
 | `ITSAppUsesNonExemptEncryption` | `false` |
 
@@ -54,7 +54,7 @@ Dependency-free support/privacy pages are prepared in [website](../website/READM
 
 Browser review at **320, 390, and 1280 pixels**, in light and dark appearance, found no horizontal overflow and confirmed the support disclosure/accordion behavior. Latest reviewed support page: [final site](../.build/website/screenshots/final-site.jpg). Earlier screenshots: [desktop light](../.build/website/screenshots/support-desktop-light.jpg) and [phone dark](../.build/website/screenshots/support-phone-dark.jpg). These are website previews, not screenshots for an App Store listing.
 
-The configured canonical [support](https://sqhil-a.github.io/quicktile-support/support.html) and [privacy](https://sqhil-a.github.io/quicktile-privacy/privacy.html) pages are published and HTTPS reachability/content equality were verified October 5, 2026. No fake App Store, application-source, or signed-download links are generated. The listing draft uses **boards** and the subtitle **Mac controls on your iPhone**; it includes companion dependence and permission limits. [APP_STORE_SUBMISSION.md](APP_STORE_SUBMISSION.md) contains the metadata, reviewer workflow, and local export template.
+The configured canonical [support](https://sqhil-a.github.io/quicktile/support.html) and [privacy](https://sqhil-a.github.io/quicktile/privacy.html) pages are published and HTTPS reachability/content equality were verified October 5, 2026. No fake App Store, application-source, or signed-download links are generated. The listing draft uses **boards** and the subtitle **Mac controls on your iPhone**; it includes companion dependence and permission limits. [APP_STORE_SUBMISSION.md](APP_STORE_SUBMISSION.md) contains the metadata, reviewer workflow, and local export template.
 
 ## Remaining release evidence
 

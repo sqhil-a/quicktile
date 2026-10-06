@@ -132,7 +132,7 @@ def build(config: dict[str, str], destination: Path, mode: str, site: str) -> No
     robots = destination / "robots.txt"
     if mode == "publish" and config["siteURL"]:
         base = config["privacySiteURL" if site == "privacy" else "siteURL"].rstrip("/")
-        urls = [config["privacyURL"]] if site == "privacy" else [base + "/", config["supportURL"]]
+        urls = [config["privacyURL"]] if site == "privacy" else list(dict.fromkeys([base + "/", config["supportURL"], config["privacyURL"]]))
         sitemap.write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + ''.join('<url><loc>' + html.escape(url) + '</loc></url>' for url in urls) + '</urlset>\n', encoding="utf-8")
         robots.write_text("User-agent: *\nAllow: /\nSitemap: " + base + "/sitemap.xml\n", encoding="utf-8")
     else:

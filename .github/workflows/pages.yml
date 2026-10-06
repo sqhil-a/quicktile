@@ -1,0 +1,45 @@
+name: Publish QuickTile website
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'website/**'
+      - 'Scripts/build-website.py'
+      - 'Scripts/verify-website.py'
+      - '.github/workflows/pages.yml'
+permissions:
+  contents: read
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/configure-pages@v5
+      - name: Build and verify public pages
+        run: |
+          python3 Scripts/build-website.py --site support --mode publish --output .build/public-site
+          python3 Scripts/verify-website.py --site .build/public-site --publish
+          rm .build/public-site/build-info.json
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: .build/public-site
+  deploy:
+    needs: package
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy verified website
+        id: deployment
+        uses: actions/deploy-pages@v4
