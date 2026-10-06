@@ -1,0 +1,80 @@
+# Static-site workflow for the standalone QuickTile support/privacy repositories.
+# Enable Settings → Pages → Source: GitHub Actions before running this workflow.
+# Reference: https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages
+name: Publish static pages
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '*.html'
+      - 'assets/**'
+      - '.nojekyll'
+      - 'robots.txt'
+      - 'sitemap.xml'
+      - '.github/workflows/pages.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Prepare only public static files
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import shutil
+          import xml.etree.ElementTree as ET
+
+          destination = Path('_site')
+          destination.mkdir()
+          names = ['index.html', 'support.html', 'privacy.html', '.nojekyll', 'robots.txt', 'sitemap.xml']
+          for name in names:
+              source = Path(name)
+              if not source.is_file() or source.is_symlink():
+                  raise SystemExit(f'Missing or unsafe static file: {name}')
+              if name.endswith('.html'):
+                  text = source.read_text(encoding='utf-8')
+                  if '{{' in text or 'Local preview' in text:
+                      raise SystemExit(f'Draft or unresolved template: {name}')
+              shutil.copyfile(source, destination / name)
+          assets = Path('assets')
+          if not assets.is_dir() or assets.is_symlink():
+              raise SystemExit('Missing or unsafe assets directory')
+          for source in assets.iterdir():
+              if not source.is_file() or source.is_symlink() or source.suffix not in ['.css', '.svg']:
+                  raise SystemExit(f'Unexpected or unsafe asset: {source}')
+          shutil.copytree(assets, destination / 'assets')
+          ET.parse(destination / 'sitemap.xml')
+          PY
+      - name: Upload static artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+  deploy:
+    needs: package
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy verified static artifact
+        id: deployment
+        uses: actions/deploy-pages@v4

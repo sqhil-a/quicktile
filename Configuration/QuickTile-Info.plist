@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict>
+<key>NSLocalNetworkUsageDescription</key><string>QuickTile finds and securely controls the Mac you pair with on your local network.</string>
+<key>NSBonjourServices</key><array><string>_quicktile._tcp</string></array>
+<key>NSMicrophoneUsageDescription</key><string>Listen while you record a voice command for your Mac. Audio stays on your iPhone.</string>
+<key>NSSpeechRecognitionUsageDescription</key><string>Transcribe your voice command on your iPhone before sending the words to Groq.</string>
+<key>NSCameraUsageDescription</key><string>Scan the pairing QR shown by QuickTile on your Mac.</string>
+<key>QuickTilePrivacyURL</key><string>https://sqhil-a.github.io/quicktile-privacy/privacy.html</string>
+<key>QuickTileSupportURL</key><string>https://sqhil-a.github.io/quicktile-support/support.html</string>
+<key>QuickTileSupportEmail</key><string>sahilambegaonkar@gmail.com</string>
+<key>ITSAppUsesNonExemptEncryption</key><false/>
+<key>UTExportedTypeDeclarations</key><array><dict>
+<key>UTTypeIdentifier</key><string>app.quicktile.board</string>
+<key>UTTypeDescription</key><string>QuickTile boards</string>
+<key>UTTypeConformsTo</key><array><string>public.json</string></array>
+<key>UTTypeTagSpecification</key><dict><key>public.filename-extension</key><array><string>quicktile</string></array><key>public.mime-type</key><string>application/vnd.quicktile.board+json</string></dict>
+</dict></array>
+</dict></plist>

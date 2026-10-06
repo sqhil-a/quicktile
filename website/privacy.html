@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How QuickTile stores boards, pairs locally, uses permissions, fetches website icons, and handles optional coding-agent tracking.">
+  <meta name="theme-color" content="#111111">
+  <title>Privacy — QuickTile</title>
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./assets/site.css">
+  {{CANONICAL}}
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="shell">
+    {{HEADER}}
+    {{DRAFT_NOTICE}}
+    <main id="main" class="document">
+      <p class="eyebrow">Last updated October 5, 2026</p>
+      <h1>Privacy</h1>
+      <p class="intro">QuickTile connects your iPhone to your Mac over your local network. It has no QuickTile account, advertising, or analytics upload. The optional voice assistant uses your Groq account.</p>
+      <section aria-labelledby="local-data"><h2 id="local-data">Data on your devices</h2>
+        <p>Pairing credentials are stored in device-only Keychain entries. Boards, preferences, timer deadlines, selected icon images, and cached app catalogs are stored locally. Local board backups support recovery after a damaged write.</p>
+        <p>QuickTile sends the actions you request and the Mac’s relevant control state over an authenticated, encrypted local connection. This can include installed app and Shortcut names, app icons, the frontmost app’s identity, audio/display state, and optional coding-agent lifecycle metadata.</p>
+        <p>Actions are never queued for later reconnection. There is no QuickTile server receiving your boards or commands. Optional voice interpretation is described below.</p>
+      </section>
+      <section aria-labelledby="voice-data"><h2 id="voice-data">Optional voice assistant</h2>
+        <p>The assistant asks before first use. Microphone audio is transcribed on your iPhone using on-device speech recognition; audio is not uploaded. Your finished transcript and available Mac app, Shortcut, and supported action names are sent from the Mac to Groq’s API using GPT OSS 120B, with GPT OSS 20B as a rate-limit fallback.</p>
+        <p>Groq receives the request and ordinary connection and account metadata. Its retention rules depend on your account settings and its <a href="https://console.groq.com/docs/your-data">data policy</a>. QuickTile does not promise zero retention by Groq.</p>
+        <p>Your API key is stored in the Mac’s Keychain. QuickTile saves neither recordings nor a transcript history, and excludes the key from board exports. Remove the key in Mac Settings to disable the assistant. You can review Groq’s data controls in your Groq account.</p>
+      </section>
+      <section aria-labelledby="website-icons"><h2 id="website-icons">Website icons and browser actions</h2>
+        <p>Using a website favicon makes direct HTTPS requests to that site’s origin and its declared icon locations. The site may use its own asset host. Those servers receive ordinary connection metadata, including your IP address.</p>
+        <p>Icon discovery uses the origin, without sending the saved URL’s private path or query. It uses no cookies, website scripts, or third-party favicon lookup service. Choose a symbol or your own image to avoid favicon requests for that tile.</p>
+        <p>Opening a website on the Mac is a separate browser action you request. The browser and website have their own privacy practices.</p>
+      </section>
+      <section aria-labelledby="agent-data"><h2 id="agent-data">Optional coding-agent tracking</h2>
+        <p>Tracking is off until you enable it in the Mac companion. QuickTile-owned local hooks record the provider, session identity, lifecycle state, source, turn or input-request identifiers, and event time.</p>
+        <p>A local Codex compatibility adapter reads session records to derive lifecycle state. Opening an agent tile can send its pending question, choices, approval description, and displayed command to your paired iPhone. Pending details may be cached locally with tracking metadata; they are cleared when resolved, and disabling tracking removes QuickTile’s cached metadata. Full conversations and agent output are not sent to the iPhone. Answers travel back over the local connection and are not sent to Groq or included in board exports. Direct replies require a live supported Codex control connection. Compatibility formats can change; unavailable or stale status is shown explicitly.</p>
+        <p>Hook setup requires your action, including Codex’s separate trust step. Disabling tracking removes QuickTile’s handlers while preserving unrelated hook configuration.</p>
+      </section>
+      <section aria-labelledby="permissions"><h2 id="permissions">Permissions</h2>
+        <ul>
+          <li><strong>Local Network:</strong> discovering and connecting the two devices.</li>
+          <li><strong>Microphone and Speech Recognition:</strong> optional on-device voice transcription.</li>
+          <li><strong>Camera:</strong> scanning a pairing code on the iPhone.</li>
+          <li><strong>Mac Accessibility:</strong> posting keyboard and laptop media controls.</li>
+          <li><strong>Mac Automation:</strong> selected system controls and supported player adapters.</li>
+          <li><strong>Notifications:</strong> optional timer completion alerts.</li>
+        </ul>
+        <p>QuickTile does not request screen-recording access. Timer haptics run while the iPhone app is open; they do not imply continuous background execution.</p>
+      </section>
+      <section aria-labelledby="sharing"><h2 id="sharing">Sharing, diagnostics, and deletion</h2>
+        <p>Exported board files contain names, action mappings, website URLs, and selected images. They exclude pairing secrets, agent transcripts, and execution history. Review names and URLs before sharing. Imports create new board identities and do not overwrite your boards.</p>
+        <p>Performance signposts stay in local system logging tools and contain no action titles, URLs, prompts, or command payloads. No diagnostics are uploaded automatically. Share diagnostic details only when you choose to do so.</p>
+        <p>Forget a Mac in QuickTile to remove its iPhone pairing credential. Revoke a phone in the Mac companion to remove its Mac credential. Remove boards or uninstall the iPhone app to remove local app-container data.</p>
+        <p>Before uninstalling the Mac companion, disable agent tracking and launch at login. Optional local files are under <code>~/Library/Application Support/QuickTile</code>. Do not remove your Codex or Claude configuration directories to uninstall QuickTile.</p>
+      </section>
+      <section aria-labelledby="this-site"><h2 id="this-site">This website</h2>
+        <p>This site uses no analytics, cookies, third-party fonts, or tracking scripts. Its hosting provider may process normal web-request information when serving a page. Following an external download, App Store, or source link takes you to that service.</p>
+      </section>
+      <section aria-labelledby="privacy-contact"><h2 id="privacy-contact">Questions or changes</h2>
+        <p>Changes to QuickTile’s data handling will be reflected here, with an updated date. For privacy questions, use the support contact below.</p>
+        <p>Email and details you voluntarily send to support are used to respond and investigate the issue. Do not send pairing codes or private agent content. Reports posted in the public issue tracker are visible to others.</p>
+        {{CONTACT}}
+        {{SOURCE_LINK}}
+      </section>
+    </main>
+    {{FOOTER}}
+  </div>
+</body>
+</html>

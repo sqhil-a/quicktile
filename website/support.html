@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Set up QuickTile, pair your iPhone and Mac, configure permissions and boards, and troubleshoot connection or control issues.">
+  <meta name="theme-color" content="#111111">
+  <title>Setup and support — QuickTile</title>
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./assets/site.css">
+  {{CANONICAL}}
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="shell">
+    {{HEADER}}
+    {{DRAFT_NOTICE}}
+    <main id="main" class="document">
+      <p class="eyebrow">Setup &amp; support</p>
+      <h1>Get connected.</h1>
+      <p class="intro">QuickTile needs an iPhone, the Mac companion, and a reachable local network. Your Mac can use Wi-Fi or Ethernet.</p>
+      <p>Requirements: iOS 18 or later and macOS 14 or later. Feature support also depends on your apps, permissions, audio output, and display.</p>
+      <div class="actions">{{DOWNLOAD_ACTIONS}}</div>
+      <section id="setup" aria-labelledby="setup-title"><h2 id="setup-title">Pair your devices</h2>
+        <ol class="steps">
+          <li><h3>Open the Mac companion.</h3><p>Place QuickTile Mac in Applications, then open it. Its four-square menu-bar icon opens the companion. Keep it running while using the iPhone app.</p></li>
+          <li><h3>Use the same local network.</h3><p>Connect your iPhone to Wi-Fi. Allow Local Network access when requested on either device. The Mac can stay connected by Ethernet.</p></li>
+          <li><h3>Scan the Mac’s code.</h3><p>Choose <strong>Pair an iPhone</strong> on the Mac, then <strong>Pair with your Mac</strong> on the iPhone. Allow Camera access to scan the code.</p></li>
+          <li><h3>Confirm on the Mac.</h3><p>Check the phone’s name and choose <strong>Connect</strong> in the Mac confirmation. A code expires after two minutes and is consumed on approval.</p></li>
+          <li><h3>Choose a board.</h3><p>Start with a preset or an empty board. Hold a tile or choose <strong>Edit page</strong> to rearrange controls. Tap an empty slot to add one.</p></li>
+        </ol>
+        <p class="note">The camera-free option uses the full temporary pairing invitation, not a short PIN. Keep it private. Never include a QR or invitation in a support report.</p>
+      </section>
+      <section aria-labelledby="permission-title"><h2 id="permission-title">Allow the controls you use</h2>
+        <p>App launchers and local timers need no Mac Accessibility permission. Keyboard and laptop media controls require QuickTile Mac in <strong>System Settings → Privacy &amp; Security → Accessibility</strong>.</p>
+        <p>Selected system actions and Spotify/Music player adapters can request Automation when first used. Timer completion notifications are optional and configured on the iPhone.</p>
+        <p>The companion’s settings show permissions, preferred installed app versions, and agent tracking. Choose a suitable target app and test shortcuts with a disposable document before using a preset for important work.</p>
+      </section>
+      <section aria-labelledby="assistant"><h2 id="assistant">Voice commands</h2>
+        <p>Add your Groq API key in the Mac companion’s Assistant settings, then add an Assistant tile on the iPhone. Agree to Groq processing and allow Microphone and Speech Recognition when asked. Tap to speak; tap again to send. Tap the spinner to cancel.</p>
+        <p>Try “Open Safari”, “Set volume to 40 percent”, or “Build in Xcode”. The assistant supports QuickTile’s existing controls and installed apps. Unclear or unsupported requests show an explanation. Audio stays on your iPhone; transcripts and available app and Shortcut names go to Groq. Groq usage may incur charges on your account.</p>
+        <p>On-device speech recognition must be available for your iPhone language. Enable it before using the assistant. Check the Mac before repeating a request if the connection was interrupted.</p>
+      </section>
+      <section aria-labelledby="troubleshooting"><h2 id="troubleshooting">Troubleshooting</h2>
+        <details><summary>My Mac does not appear.</summary><p>Open the companion and generate a fresh pairing code. Check Local Network access, Mac sleep, firewall rules, and VPN settings. Guest Wi-Fi or client isolation can prevent devices on the same network from reaching one another. Mac Local Network settings are available on macOS 15 and later.</p></details>
+        <details><summary>Scanning does not complete pairing.</summary><p>Generate a new code, scan within two minutes, and look for the confirmation on the Mac. Make sure the Mac and iPhone clocks are correct. A revoked phone must pair again. If Camera access is denied, enable it in iPhone Settings or use the full invitation option.</p></details>
+        <details><summary>The connection is paused or lost.</summary><p>Resume QuickTile from the Mac menu, keep the Mac awake, and reopen the iPhone app. QuickTile connects while the iPhone app is in the foreground. It never queues or retries an action after reconnect, so check the Mac before repeating an action that may have run.</p></details>
+        <details><summary>An app or its icon is missing.</summary><p>Refresh the Mac catalog. For an application outside the usual folders, use the companion’s Applications settings to add its location. Select an installed target version in the tile editor or preferred-app settings. A moved or removed app can require selecting it again.</p></details>
+        <details><summary>A shortcut reports “Sent” but does nothing.</summary><p>“Sent” confirms that a keyboard event was posted. The target app, active panel, selection, and keymap determine its effect. Check Accessibility, focus the relevant editor or timeline, and test the mapping. Apps and secure-input fields can ignore synthetic keys.</p></details>
+        <details><summary>Playback shows a combined play/pause icon.</summary><p>Mac playback sends the laptop’s media-key commands and cannot always observe the player’s state. The neutral icon is intentional. Explicit Spotify or Music tiles can show observed state after Automation is allowed. Browser playback and multiple simultaneous players depend on macOS routing.</p></details>
+        <details><summary>Volume or brightness is unavailable.</summary><p>Digital, HDMI, and some external audio outputs require hardware controls. Brightness support varies by display and macOS; select a supported display in the dial’s configuration. An unsupported control does not simulate a change. Recheck the output or display after connecting hardware.</p></details>
+        <details><summary>Codex or Claude status is unavailable or stale.</summary><p>Enable agent tracking in the Mac companion. If its helper or hooks are missing or outdated, choose Repair tracking. Codex also requires review and trust in /hooks after installation or repair. Start a local coding session and check the tile’s tracking-health details. Ordinary chats and cloud sessions are not local coding-agent activity. Desktop and terminal support depend on the installed agent version and available lifecycle events.</p></details>
+        <details><summary>The timer did not keep vibrating in the background.</summary><p>Timer haptic reminders run while QuickTile is open. Enable optional timer notifications for a completion alert while backgrounded. Reopen the app to acknowledge a finished timer.</p></details>
+        <details><summary>Can I undo a stopped sequence?</summary><p>Stopping, disconnecting, or pausing cancels future steps. Completed effects cannot be undone automatically. A failed or interrupted Apple Shortcut may already have performed part of its work; inspect the Mac before retrying.</p></details>
+      </section>
+      <section aria-labelledby="boards"><h2 id="boards">Share or back up boards</h2>
+        <p>Tap a waiting agent tile to view its pending request. Direct answers and one-time approvals are available only when Codex exposes a supported local control connection. Existing desktop sessions may show the request without answer controls.</p>
+        <p>Board exports are data-only <code>.quicktile</code> files. They contain names, mappings, website URLs, and chosen images, so review them before sharing. Pairing credentials and agent transcripts are excluded. Imported boards create new identities and leave existing boards in place.</p>
+      </section>
+      <section id="contact" aria-labelledby="contact-title"><h2 id="contact-title">Contact and report an issue</h2>
+        <p>Include the QuickTile versions on both devices, iOS/macOS versions, affected app or hardware, and the steps that reproduce the issue. Remove private names, URLs, and agent content from screenshots or logs.</p>
+        {{CONTACT}}
+        {{SOURCE_LINK}}
+      </section>
+      <section aria-labelledby="remove"><h2 id="remove">Remove QuickTile</h2>
+        <p>Forget the Mac on the iPhone and revoke the phone in the companion if you want to remove both pairing credentials. Before deleting the Mac app, disable agent tracking and launch at login. Uninstalling QuickTile should not remove your Codex or Claude directories.</p>
+      </section>
+    </main>
+    {{FOOTER}}
+  </div>
+</body>
+</html>

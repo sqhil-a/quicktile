@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict>
+<key>LSUIElement</key><true/>
+<key>LSApplicationCategoryType</key><string>public.app-category.productivity</string>
+<key>NSLocalNetworkUsageDescription</key><string>QuickTile advertises this Mac to your iPhone and receives commands from devices you approve.</string>
+<key>NSBonjourServices</key><array><string>_quicktile._tcp</string></array>
+<key>NSAppleEventsUsageDescription</key><string>QuickTile controls a selected music player and reads its playback state, or changes appearance when you use those tiles.</string>
+</dict></plist>
