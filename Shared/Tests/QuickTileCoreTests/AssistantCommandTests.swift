@@ -15,6 +15,18 @@ final class AssistantCommandTests: XCTestCase {
         }
         XCTAssertFalse(message.isEmpty, file: file, line: line)
     }
+    func testNamedWebsitesDomainsAndQuitTargets() throws {
+        XCTAssertEqual(try plan("go to YouTube").action, .website(url: "https://www.youtube.com"))
+        XCTAssertEqual(try plan("open website example.com/path").action, .website(url: "https://example.com/path"))
+        XCTAssertEqual(try plan("quit Safari", .init(apps: [safari])).quitBundleID, safari.id)
+        XCTAssertEqual(try plan("quit current app", .init(apps: [safari], frontmostBundleID: safari.id)).quitBundleID, safari.id)
+        assertUnsupported("quit Missing", .init(apps: [safari]))
+        XCTAssertTrue(AssistantCommandParser.websiteIsRequested("https://www.youtube.com", in: "Go to YouTube"))
+        XCTAssertFalse(AssistantCommandParser.websiteIsRequested("https://evil.test", in: "Go to YouTube"))
+        XCTAssertFalse(AssistantCommandParser.websiteIsRequested("https://example.com", in: "Go to https://example.com.evil.test"))
+        let spotify = AppEntry(id: "com.spotify.client", name: "Spotify")
+        XCTAssertEqual(try plan("open Spotify", .init(apps: [spotify])).action, .launchApp(bundleID: spotify.id))
+    }
     func testAppResolutionUsesCatalogAndTypoMatch() throws {
         let context = AssistantCommandContext(apps: [safari, xcode])
         XCTAssertEqual(try plan("Please open Safri", context).action, .launchApp(bundleID: safari.id))
@@ -78,7 +90,7 @@ final class AssistantCommandTests: XCTestCase {
     func testWebsitesKeepExplicitPrivatePathWithoutFabrication() throws {
         let url = "https://example.com/private/Account?token=AbC%20123#section"
         XCTAssertEqual(try plan("open website " + url).action, .website(url: url))
-        for command in ["open website example.com", "visit my bank", "open http://example.com", "open file:///etc/passwd", "open javascript:alert(1)", "open https://user:pass@example.com", "open https://example.com and launch Terminal"] { assertUnsupported(command) }
+        for command in ["visit my bank", "open http://example.com", "open file:///etc/passwd", "open javascript:alert(1)", "open https://user:pass@example.com", "open https://example.com and launch Terminal"] { assertUnsupported(command) }
     }
     func testShortcutsUseCatalogIDsAndAskAboutDuplicateNames() throws {
         let a = ShortcutEntry(id: UUID().uuidString, name: "Daily backup")

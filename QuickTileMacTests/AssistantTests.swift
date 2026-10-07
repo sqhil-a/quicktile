@@ -7,6 +7,23 @@ final class AssistantTests: XCTestCase {
         let content = String(decoding: try JSONSerialization.data(withJSONObject: ["commands":commands,"question":question]), as: UTF8.self)
         return try JSONSerialization.data(withJSONObject:["choices":[["finish_reason":"stop", "message":["content":content]]]])
     }
+    func testFollowUpRetainsRequestAndExpires() {
+        let date = Date(timeIntervalSince1970: 100)
+        let pending = AssistantFollowUp(request: "Quit Safari", question: "Quit Safari?", createdAt: date)
+        XCTAssertTrue(pending.input(answer: "Yes", now: date.addingTimeInterval(30)).contains("Quit Safari"))
+        XCTAssertTrue(pending.input(answer: "Yes", now: date.addingTimeInterval(30)).contains("User follow-up: Yes"))
+        XCTAssertEqual(pending.input(answer: "Open Notes", now: date.addingTimeInterval(121)), "Open Notes")
+    }
+    @MainActor func testPromptSupportsQuitAndKnownWebsites() throws {
+        let body = try GroqAssistant.requestBody(text: "Quit Safari and go to YouTube", context: .init(apps: [safari]))
+        let json = try XCTUnwrap(JSONSerialization.jsonObject(with: body) as? [String: Any])
+        let messages = try XCTUnwrap(json["messages"] as? [[String: String]])
+        XCTAssertTrue(messages[0]["content"]!.contains("Quit APP"))
+        XCTAssertTrue(messages[0]["content"]!.contains("youtube.com"))
+        let plans = try GroqAssistant.plans(from: response(["Quit Safari", "Open website https://www.youtube.com"]), context: .init(apps: [safari]))
+        XCTAssertEqual(plans[0].quitBundleID, safari.id)
+        XCTAssertEqual(plans[1].action, .website(url: "https://www.youtube.com"))
+    }
     @MainActor func testStructuredRequestExcludesIdentifiersAndUsesRequiredModel() throws {
         let context = AssistantCommandContext(apps:[safari], shortcuts:[.init(id:UUID().uuidString,name:"Review")])
         let body = try GroqAssistant.requestBody(text:"Open Safari",context:context)
@@ -36,8 +53,18 @@ final class AssistantTests: XCTestCase {
         guard ProcessInfo.processInfo.environment["QUICKTILE_TEST_GROQ"] == "1" else { throw XCTSkip("Live cloud request is opt-in") }
         let store = GroqAssistant()
         XCTAssertTrue(store.configured)
-        let plans = try await store.resolve("Please open Safari",context:.init(apps:[safari]))
-        XCTAssertEqual(plans.first?.action,.launchApp(bundleID:safari.id))
+        let plans = try await store.resolve("Quit Safari and go to YouTube",context:.init(apps:[safari]))
+        XCTAssertEqual(plans.count, 2)
+        XCTAssertEqual(plans.first?.quitBundleID, safari.id)
+        guard case .website(let url) = plans.last?.action else { return XCTFail("Expected YouTube") }
+        XCTAssertTrue(url.contains("youtube.com"))
+        let followUp = AssistantFollowUp(request: "Quit Safari", question: "Should I quit Safari?")
+        let confirmed = try await store.resolve(followUp.input(answer: "Yes"), context: .init(apps: [safari]))
+        XCTAssertEqual(confirmed.first?.quitBundleID, safari.id)
+        let settings = try await store.resolve("Set the sound to fifty percent and switch to dark mode", context: .init(apps: [safari], controls: .init(volume: 0.3, brightness: nil, displayID: nil, displayName: nil)))
+        XCTAssertEqual(settings.count, 2)
+        XCTAssertEqual(settings.first?.controlValue, 0.5)
+        XCTAssertEqual(settings.last?.desiredDarkMode, true)
     }
     @MainActor func testValidProviderResponseResolvesOnlyInstalledApp() async throws {
         let config = URLSessionConfiguration.ephemeral; config.protocolClasses = [AssistantSuccessTransportStub.self]

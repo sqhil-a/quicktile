@@ -27,7 +27,7 @@
       <section aria-labelledby="voice-data"><h2 id="voice-data">Optional voice assistant</h2>
         <p>The assistant asks before first use. Microphone audio is transcribed on your iPhone using on-device speech recognition; audio is not uploaded. Your finished transcript and available Mac app, Shortcut, and supported action names are sent from the Mac to Groq’s API using GPT OSS 120B, with GPT OSS 20B as a rate-limit fallback.</p>
         <p>Groq receives the request and ordinary connection and account metadata. Its retention rules depend on your account settings and its <a href="https://console.groq.com/docs/your-data">data policy</a>. QuickTile does not promise zero retention by Groq.</p>
-        <p>Your API key is stored in the Mac’s Keychain. QuickTile saves neither recordings nor a transcript history, and excludes the key from board exports. Remove the key in Mac Settings to disable the assistant. You can review Groq’s data controls in your Groq account.</p>
+        <p>Your API key is stored in the Mac’s Keychain. QuickTile saves neither recordings nor a transcript history. An unresolved request and question stay briefly in memory so you can answer; follow-up context is sent to Groq and expires after two minutes. QuickTile and excludes the key from board exports. Remove the key in Mac Settings to disable the assistant. You can review Groq’s data controls in your Groq account.</p>
       </section>
       <section aria-labelledby="website-icons"><h2 id="website-icons">Website icons and browser actions</h2>
         <p>Using a website favicon makes direct HTTPS requests to that site’s origin and its declared icon locations. The site may use its own asset host. Those servers receive ordinary connection metadata, including your IP address.</p>

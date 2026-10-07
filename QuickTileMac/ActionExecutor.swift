@@ -100,7 +100,11 @@ import QuickTileCore
                 try Task.checkCancellation()
                 guard authorized() else { throw QuickTileError.unauthorized }
                 guard Date() < deadline else { throw QuickTileError.timeout }
-                if let value = plan.controlValue, case .dial(let kind) = plan.action {
+                if let bundle = plan.quitBundleID {
+                    let apps = NSRunningApplication.runningApplications(withBundleIdentifier: bundle)
+                    guard apps.allSatisfy({ $0.terminate() }) else { throw QuickTileError.failed("macOS could not request that app to quit.") }
+                    final = .init(.completed, apps.isEmpty ? "Already closed" : "Requested \(plan.title)", outcome: .commandSent)
+                } else if let value = plan.controlValue, case .dial(let kind) = plan.action {
                     if kind == .volume { try VolumeControl().setDialLevel(value) }
                     else if let display = plan.displayID { try BrightnessControl.shared.set(value, displayID: display) }
                     final = .init(.completed, plan.title, outcome: .stateChanged)

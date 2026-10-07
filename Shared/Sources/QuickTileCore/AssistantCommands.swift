@@ -25,13 +25,14 @@ public struct AssistantCommandPlan: Codable, Equatable, Sendable {
     public let displayID: UInt32?
     public let desiredMuted: Bool?
     public let desiredPlayback: PlaybackState?
+    public let quitBundleID: String?
     public let desiredDarkMode: Bool?
     public init(title: String, symbol: String, action: DeckAction, targetBundleID: String? = nil,
                 controlValue: Double? = nil, displayID: UInt32? = nil, desiredMuted: Bool? = nil,
-                desiredPlayback: PlaybackState? = nil, desiredDarkMode: Bool? = nil) {
+                desiredPlayback: PlaybackState? = nil, desiredDarkMode: Bool? = nil, quitBundleID: String? = nil) {
         self.title = title; self.symbol = symbol; self.action = action; self.targetBundleID = targetBundleID
         self.controlValue = controlValue; self.displayID = displayID; self.desiredMuted = desiredMuted
-        self.desiredPlayback = desiredPlayback; self.desiredDarkMode = desiredDarkMode
+        self.desiredPlayback = desiredPlayback; self.desiredDarkMode = desiredDarkMode; self.quitBundleID = quitBundleID
     }
 }
 
@@ -58,8 +59,14 @@ public enum AssistantCommandParser {
         }
         let key = normalized(command)
 
+        if let groups = captures(#"^(?:quit|exit|close app)\s+(?:the\s+)?(?:app\s+)?(.+)$"#, command) {
+            let matches = ["this app", "current app", "the current app", "active app"].contains(normalized(groups[0]))
+                ? context.apps.filter { $0.id == context.frontmostBundleID } : matchedApps(groups[0], context: context)
+            guard !matches.isEmpty else { return .unsupported("That app is not installed on your Mac.") }
+            return resolve(matches.map { .init(title: "Quit \($0.name)", symbol: "xmark", action: .launchApp(bundleID: $0.id), targetBundleID: $0.id, quitBundleID: $0.id) }, prompt: "Which app should quit?")
+        }
         if let groups = captures(#"^(?:open(?: website)?|launch website|visit|go to)\s+(.+)$"#, command),
-           groups[0].contains(":") || command.lowercased().contains("website") || command.lowercased().hasPrefix("visit ") || command.lowercased().hasPrefix("go to ") {
+           (websiteURL(groups[0]) != nil && !groups[0].lowercased().hasPrefix("com.") && matchedApps(groups[0], context: context).isEmpty) || groups[0].contains(":") || command.lowercased().contains("website") || command.lowercased().hasPrefix("visit ") || command.lowercased().hasPrefix("go to ") {
             return website(groups[0])
         }
         if command.lowercased().hasPrefix("https://") { return website(command) }
@@ -105,11 +112,39 @@ public enum AssistantCommandParser {
         return .unsupported("Try an app, a full HTTPS website, a named Apple Shortcut, volume, brightness, playback, or a supported Mac control. Shell commands and arbitrary settings are not supported.")
     }
 
-    private static func website(_ query: String) -> AssistantCommandResolution {
-        guard let url = try? Validation.website(query), url.scheme?.lowercased() == "https" else {
-            return .unsupported("Give the full https:// address without spaces or a username/password. I cannot guess a website or private URL.")
+    public static let commonWebsites: [String: String] = [
+        "youtube": "https://www.youtube.com", "google": "https://www.google.com",
+        "github": "https://github.com", "reddit": "https://www.reddit.com",
+        "wikipedia": "https://www.wikipedia.org", "netflix": "https://www.netflix.com",
+        "spotify": "https://open.spotify.com", "gmail": "https://mail.google.com",
+        "chatgpt": "https://chatgpt.com", "claude": "https://claude.ai",
+        "notion": "https://www.notion.so", "figma": "https://www.figma.com"
+    ]
+    public static func websiteURL(_ query: String) -> String? {
+        let value = unquoted(query)
+        if let known = commonWebsites[normalized(value).replacingOccurrences(of: " ", with: "")] { return known }
+        let text = value.lowercased().hasPrefix("https://") ? value : "https://" + value
+        guard !value.contains(where: \.isWhitespace), !value.contains(":") || value.lowercased().hasPrefix("https://"),
+              let url = try? Validation.website(text), url.scheme == "https", let host = url.host,
+              host.contains("."), !host.hasSuffix("."), url.user == nil, url.password == nil else { return nil }
+        return url.absoluteString
+    }
+    public static func websiteIsRequested(_ url: String, in text: String) -> Bool {
+        let words = text.split(whereSeparator: \.isWhitespace).map { String($0).trimmingCharacters(in: CharacterSet(charactersIn: ",;!?\"")) }
+        func same(_ lhs: String?, _ rhs: String) -> Bool {
+            guard let lhs, var a = URLComponents(string: lhs), var b = URLComponents(string: rhs) else { return false }
+            if a.path.isEmpty { a.path = "/" }; if b.path.isEmpty { b.path = "/" }
+            a.host = a.host?.lowercased(); b.host = b.host?.lowercased()
+            return a == b
         }
-        return .plan(.init(title: "Open \(url.host ?? "website")", symbol: "globe", action: .website(url: query)))
+        return words.contains { same(websiteURL($0), url) }
+            || commonWebsites.contains { name, target in same(target, url) && normalized(text).split(separator: " ").contains(Substring(name)) }
+    }
+    private static func website(_ query: String) -> AssistantCommandResolution {
+        guard let resolved = websiteURL(query), let url = URL(string: resolved) else {
+            return .unsupported("Say a website name such as YouTube, or its domain or HTTPS address.")
+        }
+        return .plan(.init(title: "Open \(url.host ?? "website")", symbol: "globe", action: .website(url: resolved)))
     }
 
     private static func control(_ command: String, context: AssistantCommandContext) -> AssistantCommandResolution? {

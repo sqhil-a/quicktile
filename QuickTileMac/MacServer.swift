@@ -48,6 +48,7 @@ import QuickTileCore
         var catalogTask: Task<Void, Never>?
         var features = Set<String>()
         var lastCapabilities: Capabilities?
+        var assistantFollowUp: AssistantFollowUp?
         var displayID: UInt32?
         init(channel: WireChannel, identity: UUID, pairing: Bool) { self.channel = channel; self.identity = identity; self.pairing = pairing }
     }
@@ -265,10 +266,23 @@ import QuickTileCore
                     defer { peer.tasks.removeValue(forKey: message.id) }
                     let authorized = { !peer.channel.isClosed && peer.gate.authorized && !self.paused && self.assistant.configured && self.devices.contains { $0.id == peer.identity } }
                     do {
+                        let reply = request.text.lowercased().trimmingCharacters(in: .whitespacesAndNewlines.union(.punctuationCharacters))
+                        if peer.assistantFollowUp != nil, ["no", "cancel", "never mind", "nevermind", "stop"].contains(reply) {
+                            peer.assistantFollowUp = nil
+                            peer.channel.send(Envelope(id: message.id, payload: .result(.init(.completed, "Cancelled", outcome: .cancelled))))
+                            return
+                        }
                         let context = AssistantCommandContext(apps: self.catalog.apps, shortcuts: self.catalog.shortcuts,
                             controls: BrightnessControl.shared.snapshot(displayID: peer.displayID), playback: self.executor.capabilities.playback ?? [],
                             frontmostBundleID: self.executor.capabilities.frontmostBundleID)
-                        let plans = try await self.assistant.resolve(request.text, context: context)
+                        let input = peer.assistantFollowUp?.input(answer: request.text) ?? request.text
+                        peer.assistantFollowUp = nil
+                        let plans: [AssistantCommandPlan]
+                        do { plans = try await self.assistant.resolve(input, context: context) }
+                        catch GroqAssistantError.clarification(let question) {
+                            peer.assistantFollowUp = .init(request: input, question: question)
+                            throw GroqAssistantError.clarification(question)
+                        }
                         try Task.checkCancellation()
                         guard authorized() else { throw QuickTileError.unauthorized }
                         let result = try await self.executor.executeAssistant(plans, authorized: authorized)

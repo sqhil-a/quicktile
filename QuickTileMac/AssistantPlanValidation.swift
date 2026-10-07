@@ -8,6 +8,10 @@ enum AssistantPlanValidation {
         var controls = Set<ControlKind>()
         for plan in plans {
             try plan.action.validate()
+            if let quit = plan.quitBundleID {
+                guard case .launchApp(let target) = plan.action, target == quit, plan.targetBundleID == quit,
+                      apps.contains(where: { $0.id == quit }) else { throw QuickTileError.invalid("Choose an installed app to quit.") }
+            }
             let availability = ActionRegistry.availability(action: plan.action, capabilities: capabilities, apps: apps, connected: true, preferredBundleID: plan.targetBundleID)
             guard availability.isReady else { throw QuickTileError.failed(availability.message ?? "This control is unavailable.") }
             switch plan.action {
