@@ -25,6 +25,9 @@ public enum AppProfiles {
         .init(id: "affinitydesigner", title: "Affinity Designer", bundleIDs: ["com.seriflabs.affinitydesigner", "com.seriflabs.affinitydesigner2"], versionedPrefixes: [], symbol: "pencil.tip", shortcutDocumentation: "https://affinity.help/designer2/en-US.lproj/pages/Workspace/shortcuts.html"),
         .init(id: "xcode", title: "Xcode", bundleIDs: ["com.apple.dt.Xcode"], versionedPrefixes: [], symbol: "hammer", shortcutDocumentation: "https://developer.apple.com/documentation/xcode"),
         .init(id: "vscode", title: "VS Code", bundleIDs: ["com.microsoft.VSCode", "com.microsoft.VSCodeInsiders"], versionedPrefixes: [], symbol: "chevron.left.forwardslash.chevron.right", shortcutDocumentation: "https://code.visualstudio.com/docs/reference/default-keybindings"),
+        .init(id: "godot", title: "Godot", bundleIDs: ["org.godotengine.godot", "org.godotengine.godot.mono"], versionedPrefixes: [], symbol: "gamecontroller", shortcutDocumentation: "https://docs.godotengine.org/en/4.5/tutorials/editor/default_key_mapping.html"),
+        .init(id: "unity", title: "Unity", bundleIDs: ["com.unity3d.UnityEditor5.x", "com.unity3d.UnityEditor"], versionedPrefixes: [], symbol: "cube", shortcutDocumentation: "https://docs.unity3d.com/Manual/UnityHotkeys.html"),
+        .init(id: "unreal", title: "Unreal Engine", bundleIDs: ["com.epicgames.UnrealEditor", "com.epicgames.UE4Editor"], versionedPrefixes: [], symbol: "cube.transparent", shortcutDocumentation: "https://dev.epicgames.com/documentation/en-us/unreal-engine/viewport-controls-in-unreal-engine"),
         .init(id: "codex", title: "Codex", bundleIDs: ["com.openai.codex"], versionedPrefixes: [], symbol: "terminal", shortcutDocumentation: nil),
         .init(id: "claude", title: "Claude", bundleIDs: ["com.anthropic.claudefordesktop"], versionedPrefixes: [], symbol: "sparkle", shortcutDocumentation: nil)
     ]

@@ -2,6 +2,24 @@ import XCTest
 @testable import QuickTileCore
 
 final class ActionContractTests: XCTestCase {
+    func testGameBoardsResolveInstalledEditorsAndKeepEightSlots() throws {
+        let apps = [AppEntry(id: "com.unity3d.UnityEditor5.x", name: "Unity"), AppEntry(id: "org.godotengine.godot.mono", name: "Godot .NET"), AppEntry(id: "com.epicgames.UE4Editor", name: "Unreal Editor")]
+        for id in ["unity", "godot", "unreal"] {
+            let board = try XCTUnwrap(PresetBoards.board(id: id))
+            XCTAssertEqual(board.pages.count, 2)
+            let layout = board.makePage(apps: apps)
+            XCTAssertEqual(layout.tileOrder?.count, 16)
+            for tile in layout.tiles {
+                XCTAssertTrue(apps.contains { $0.id == tile.targetBundleID })
+                guard case .preset(let actionID) = tile.action else { return XCTFail("Expected engine preset") }
+                XCTAssertEqual(ActionLibrary.preset(id: actionID)?.category, .game)
+            }
+        }
+        XCTAssertEqual(ActionLibrary.preset(id: "godot.play")?.shortcut?.key, "b")
+        XCTAssertEqual(ActionLibrary.preset(id: "godot.play")?.shortcut?.modifiers, [.command])
+        XCTAssertEqual(ActionLibrary.preset(id: "unity.play")?.shortcut?.modifiers, [.command])
+        XCTAssertEqual(ActionLibrary.preset(id: "unreal.play")?.shortcut?.modifiers, [.option])
+    }
     func testProfileResolutionUsesInstalledVariantsAndValidatedPreferences() {
         let apps = [AppEntry(id: "com.apple.FinalCutApp", name: "Final Cut Pro"), AppEntry(id: "com.adobe.PremierePro.26", name: "Premiere Pro 2026"), AppEntry(id: "other.app", name: "Other")]
         XCTAssertEqual(AppProfiles.resolve(bundleID: "com.apple.FinalCut", apps: apps)?.id, "com.apple.FinalCutApp")

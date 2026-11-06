@@ -107,6 +107,7 @@ public enum ActionRegistry {
         switch action {
         case .preset(let id):
             guard let preset = ActionLibrary.preset(id: id) else { return nil }
+            if preset.category == .game { return "Open a game project and focus the editor scene, viewport or relevant panel. Uses default Mac shortcuts; custom keymaps need configuration." }
             return preset.category == .video ? "Open a project and focus the timeline or relevant panel. Test with the app’s current keymap." : "Open a document and focus the relevant panel. Test with the app’s current keymap."
         case .keyboard: return "Keys use physical ANSI positions. The focused panel and keymap determine the effect."
         default: return nil

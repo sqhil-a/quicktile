@@ -17,19 +17,24 @@ struct ActionLibraryView: View {
         List {
             if let category, query.isEmpty {
                 let items = ActionLibrary.actions.filter { $0.category == category }
-                if (category == .video || category == .photo || category == .development), appName == nil {
+                if (category == .video || category == .photo || category == .development || category == .game), appName == nil {
                     ForEach(Array(Set(items.compactMap { $0.preset?.appName })).sorted(), id: \.self) { app in
                         NavigationLink {
                             ActionLibraryView(choose: choose, category: category, appName: app)
                         } label: {
                             Label(app, systemImage: category.symbol).padding(.vertical, 6)
-                        }.accessibilityIdentifier((category == .video ? "video-app-" : category == .photo ? "photo-app-" : "development-app-") + app)
+                        }.accessibilityIdentifier((category == .video ? "video-app-" : category == .photo ? "photo-app-" : category == .game ? "game-app-" : "development-app-") + app)
                     }
                     let general = items.filter { $0.preset == nil }
                     if !general.isEmpty { Section("General") { ForEach(general) { row($0) } } }
                 } else if let appName {
                     let appItems = items.filter { $0.preset?.appName == appName }
-                    if category == .development { ForEach(appItems) { row($0) } }
+                    if category == .development || category == .game {
+                        ForEach(appItems) { row($0) }
+                        if category == .game {
+                            Section { Text("Uses default Mac shortcuts. Focus the editor’s scene or viewport. Custom keymaps can be changed in tile settings.").font(.caption).foregroundStyle(.secondary) }
+                        }
+                    }
                     else {
                     ForEach(category == .photo ? ["Tools", "Selections & layers", "Color & retouch", "View & document"] : ["Playback", "Editing", "Tools & workspace", "Project"], id: \.self) { group in
                         let grouped = appItems.filter { (category == .photo ? photoGroup($0) : videoGroup($0)) == group }

@@ -1,10 +1,10 @@
 import Foundation
 
 public enum ActionCategory: String, CaseIterable, Identifiable, Sendable {
-    case apps = "Apps & links", media = "Media", mac = "Mac controls", video = "Video editing", photo = "Photo & design", development = "Development", editing = "Everyday", ai = "AI agents"
+    case apps = "Apps & links", media = "Media", mac = "Mac controls", video = "Video editing", photo = "Photo & design", development = "Development", game = "Game development", editing = "Everyday", ai = "AI agents"
     public var id: String { rawValue }
     public var symbol: String {
-        switch self { case .apps: "app"; case .media: "playpause"; case .mac: "desktopcomputer"; case .video: "film"; case .photo: "photo.artframe"; case .development: "chevron.left.forwardslash.chevron.right"; case .editing: "cursorarrow"; case .ai: "terminal" }
+        switch self { case .apps: "app"; case .media: "playpause"; case .mac: "desktopcomputer"; case .video: "film"; case .photo: "photo.artframe"; case .development: "chevron.left.forwardslash.chevron.right"; case .game: "gamecontroller"; case .editing: "cursorarrow"; case .ai: "terminal" }
     }
 }
 public enum PresetStep: Equatable, Sendable { case key(KeyboardShortcut) }
@@ -382,6 +382,51 @@ public enum ActionLibrary {
         v("recent", "Open recent file", "clock.arrow.circlepath", "p", [.command])
         v("editor", "Focus editor", "chevron.left.forwardslash.chevron.right", "1", [.command])
         v("navigator", "Explorer", "sidebar.left", "e", [.command, .shift])
+        key("godot", "Godot", "org.godotengine.godot", .game, "play", "Run project", "play.fill", "b", [.command])
+        key("godot", "Godot", "org.godotengine.godot", .game, "scene", "Run current scene", "play.rectangle", "r", [.command])
+        key("godot", "Godot", "org.godotengine.godot", .game, "pause", "Pause scene", "pause.fill", "y", [.command, .control])
+        key("godot", "Godot", "org.godotengine.godot", .game, "stop", "Stop project", "stop.fill", ".", [.command])
+        key("godot", "Godot", "org.godotengine.godot", .game, "save", "Save scene", "square.and.arrow.down", "s", [.command])
+        key("godot", "Godot", "org.godotengine.godot", .game, "save-all", "Save all scenes", "square.and.arrow.down.on.square", "s", [.command, .shift, .option])
+        key("godot", "Godot", "org.godotengine.godot", .game, "quick-open", "Quick open", "magnifyingglass", "o", [.command, .control])
+        key("godot", "Godot", "org.godotengine.godot", .game, "palette", "Command palette", "command", "p", [.command, .shift])
+        key("godot", "Godot", "org.godotengine.godot", .game, "editor-2d", "2D editor", "square", "1", [.command, .control])
+        key("godot", "Godot", "org.godotengine.godot", .game, "editor-3d", "3D editor", "cube", "2", [.command, .control])
+        key("godot", "Godot", "org.godotengine.godot", .game, "script", "Script editor", "curlybraces", "3", [.command, .control])
+        key("godot", "Godot", "org.godotengine.godot", .game, "select", "Select tool", "cursorarrow", "q", [])
+        key("godot", "Godot", "org.godotengine.godot", .game, "move", "Move tool", "arrow.up.and.down.and.arrow.left.and.right", "w", [])
+        key("godot", "Godot", "org.godotengine.godot", .game, "rotate", "Rotate tool", "rotate.right", "e", [])
+        key("godot", "Godot", "org.godotengine.godot", .game, "focus", "Focus selection", "scope", "f", [])
+        key("godot", "Godot", "org.godotengine.godot", .game, "undo", "Undo", "arrow.uturn.backward", "z", [.command])
+        key("unity", "Unity", "com.unity3d.UnityEditor", .game, "play", "Enter / exit Play mode", "playpause.fill", "p", [.command])
+        key("unity", "Unity", "com.unity3d.UnityEditor", .game, "pause", "Pause / resume", "pause.fill", "p", [.command, .shift])
+        key("unity", "Unity", "com.unity3d.UnityEditor", .game, "step", "Step frame", "forward.frame.fill", "p", [.command, .option])
+        key("unity", "Unity", "com.unity3d.UnityEditor", .game, "save", "Save scene", "square.and.arrow.down", "s", [.command])
+        key("unity", "Unity", "com.unity3d.UnityEditor", .game, "duplicate", "Duplicate selection", "plus.square.on.square", "d", [.command])
+        key("unity", "Unity", "com.unity3d.UnityEditor", .game, "undo", "Undo", "arrow.uturn.backward", "z", [.command])
+        key("unity", "Unity", "com.unity3d.UnityEditor", .game, "redo", "Redo", "arrow.uturn.forward", "z", [.command, .shift])
+        key("unity", "Unity", "com.unity3d.UnityEditor", .game, "game", "Game view", "gamecontroller", "2", [.command])
+        key("unity", "Unity", "com.unity3d.UnityEditor", .game, "hand", "Hand tool", "hand.draw", "q", [])
+        key("unity", "Unity", "com.unity3d.UnityEditor", .game, "move", "Move tool", "arrow.up.and.down.and.arrow.left.and.right", "w", [])
+        key("unity", "Unity", "com.unity3d.UnityEditor", .game, "rotate", "Rotate tool", "rotate.right", "e", [])
+        key("unity", "Unity", "com.unity3d.UnityEditor", .game, "scale", "Scale tool", "arrow.up.left.and.arrow.down.right", "r", [])
+        key("unity", "Unity", "com.unity3d.UnityEditor", .game, "rect", "Rect tool", "rectangle.dashed", "t", [])
+        key("unity", "Unity", "com.unity3d.UnityEditor", .game, "transform", "Transform tool", "move.3d", "y", [])
+        key("unity", "Unity", "com.unity3d.UnityEditor", .game, "focus", "Frame selection", "scope", "f", [])
+        key("unity", "Unity", "com.unity3d.UnityEditor", .game, "scene", "Scene view", "cube", "1", [.command])
+        key("unreal", "Unreal Engine", "com.epicgames.UnrealEditor", .game, "select", "Select tool", "cursorarrow", "q", [])
+        key("unreal", "Unreal Engine", "com.epicgames.UnrealEditor", .game, "move", "Translate tool", "arrow.up.and.down.and.arrow.left.and.right", "w", [])
+        key("unreal", "Unreal Engine", "com.epicgames.UnrealEditor", .game, "rotate", "Rotate tool", "rotate.right", "e", [])
+        key("unreal", "Unreal Engine", "com.epicgames.UnrealEditor", .game, "scale", "Scale tool", "arrow.up.left.and.arrow.down.right", "r", [])
+        key("unreal", "Unreal Engine", "com.epicgames.UnrealEditor", .game, "focus", "Focus selection", "scope", "f", [])
+        key("unreal", "Unreal Engine", "com.epicgames.UnrealEditor", .game, "cycle", "Cycle transform tool", "arrow.triangle.2.circlepath", "space", [])
+        key("unreal", "Unreal Engine", "com.epicgames.UnrealEditor", .game, "game", "Game view", "gamecontroller", "g", [])
+        key("unreal", "Unreal Engine", "com.epicgames.UnrealEditor", .game, "immersive", "Immersive viewport", "arrow.up.left.and.arrow.down.right", "f11", [])
+        key("unreal", "Unreal Engine", "com.epicgames.UnrealEditor", .game, "play", "Play in editor", "play.fill", "p", [.option])
+        key("unreal", "Unreal Engine", "com.epicgames.UnrealEditor", .game, "simulate", "Simulate in editor", "play.rectangle", "s", [.option])
+        key("unreal", "Unreal Engine", "com.epicgames.UnrealEditor", .game, "stop", "Stop play session", "stop.fill", "escape", [])
+        key("unreal", "Unreal Engine", "com.epicgames.UnrealEditor", .game, "eject", "Eject / possess", "person.crop.rectangle", "f10", [])
+        key("unreal", "Unreal Engine", "com.epicgames.UnrealEditor", .game, "screenshot", "Viewport screenshot", "camera", "f9", [])
         return result
     }()
     public static let actions: [LibraryAction] = {
