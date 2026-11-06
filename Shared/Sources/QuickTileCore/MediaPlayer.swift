@@ -20,3 +20,22 @@ extension Tile {
         return action.playbackTarget
     }
 }
+
+extension PlaybackState {
+    public var controlSymbol: String { switch self { case .playing: "pause.fill"; case .paused: "play.fill"; case .unknown: "playpause.fill" } }
+}
+public enum MediaRouting {
+    public static func player(running: Set<MediaPlayer>, states: [MediaPlayer: PlaybackState], lastControlled: MediaPlayer?, frontmost: String?, browserFrontmost: Bool) -> MediaPlayer? {
+        let playing = running.filter { states[$0] == .playing }
+        if let front = playing.first(where: { $0.rawValue == frontmost }) { return front }
+        if let lastControlled, playing.contains(lastControlled) { return lastControlled }
+        if playing.count == 1 { return playing.first }
+        // A sole running Spotify with ungranted observation needs its first explicit
+        // control/Automation request, rather than a media key that can launch Music.
+        if playing.isEmpty, running == [.spotify], states[.spotify] == .unknown { return .spotify }
+        if !playing.isEmpty || browserFrontmost { return nil }
+        if let lastControlled, running.contains(lastControlled) { return lastControlled }
+        if running.count == 1 { return running.first }
+        return running.first(where: { $0.rawValue == frontmost })
+    }
+}

@@ -237,7 +237,7 @@ private struct CompanionSettings: View {
     var body: some View {
         Form {
             Section("Permissions") {
-                Label(accessibility ? "Accessibility allowed" : "Accessibility needed for keys and media", systemImage: "keyboard")
+                Label(accessibility ? "Accessibility allowed" : "Accessibility needed for keys and browser media", systemImage: "keyboard")
                 Button("Open Privacy & Security") { NSWorkspace.shared.open(URL(string: "x-apple.systempreferences:com.apple.preference.security")!) }
                 Button("Refresh permission status") { accessibility = AXIsProcessTrusted(); Task { await server.refresh() } }
                 Text("Other permissions are requested when a control needs them.").font(.caption).foregroundStyle(.secondary)

@@ -1,4 +1,5 @@
 import SwiftUI
+import WidgetKit
 import Combine
 import UIKit
 import AudioToolbox
@@ -256,6 +257,14 @@ import os
                 channel.send(Envelope(id: id, payload: .adjustControl(ControlAdjustment(sessionID: sessionID, createdAt: Date().addingTimeInterval(self.clockOffset), kind: kind, value: value, displayID: self.controls.state?.displayID))))
             } else { channel.send(Envelope(id: id, payload: .controlsRequest)) }
         }
+        images.onWidgetArtworkReady = { [weak self] in
+            guard let self, WidgetStore.enabled else { return }
+            self.widgetArtworkTask?.cancel()
+            self.widgetArtworkTask = Task { [weak self] in
+                try? await Task.sleep(for: .milliseconds(500))
+                guard !Task.isCancelled else { return }; self?.publishWidgetSnapshot()
+            }
+        }
         images.requestApp = { [weak self] version in
             guard version.count == 64, version.allSatisfy({ $0.isHexDigit }), let self else { return }
             self.iconQueue.enqueue(version); self.pumpIcons()
@@ -314,6 +323,14 @@ import os
                 }
                 controls.setAvailable(true)
             }
+        }
+        if uiTest && ProcessInfo.processInfo.arguments.contains("--ui-testing-widgets"), let layout {
+            WidgetStore.defaults?.set(true, forKey: "widgetControlsEnabled")
+            let boards = layout.pages.map { board in
+                WidgetBoard(id: board.id.uuidString, name: board.name, symbol: board.symbol,
+                    pages: stride(from: 0, to: board.slots.count, by: 8).map { Array(board.slots.dropFirst($0).prefix(8)) })
+            }
+            WidgetStore.save(.init(macID: layout.macID, macName: "Preview Mac", boards: boards, updated: Date()))
         }
         #endif
     }
@@ -532,11 +549,7 @@ import os
     }
     func playbackSymbol(for tile: Tile) -> String {
         guard let target = tile.playbackTarget else { return tile.action.fixedSymbol ?? "playpause.fill" }
-        switch capabilities.playback?.first(where: { $0.target == target })?.state ?? .unknown {
-        case .playing: return "pause.fill"
-        case .paused: return "play.fill"
-        case .unknown: return "playpause.fill"
-        }
+        return (capabilities.playback?.first(where: { $0.target == target })?.state ?? .unknown).controlSymbol
     }
     func addPresetBoard(_ template: PresetBoard, preferredBundleID: String? = nil) {
         let board = template.makePage(apps: apps, preferredBundleID: preferredBundleID)
@@ -658,7 +671,45 @@ import os
         self.apps = apps; self.shortcuts = shortcuts; catalogRevision = UUID()
     }
     func updateIdleTimer() { UIApplication.shared.isIdleTimerDisabled = foreground && state == .connected && layout?.settings.keepAwake == true }
+    func publishWidgetSnapshot() {
+        guard WidgetStore.enabled else {
+            if WidgetStore.defaults?.data(forKey: "widgetSnapshot") != nil { WidgetStore.clear() }
+            return
+        }
+        guard !previewMode, let selected, let layout else { WidgetStore.save(.empty); return }
+        let boards = layout.pages.map { board in
+            let slots = board.slots
+            return WidgetBoard(id: board.id.uuidString, name: board.name, symbol: board.symbol,
+                pages: stride(from: 0, to: slots.count, by: 8).map { Array(slots[$0..<min($0 + 8, slots.count)]) })
+        }
+        var icons: [String: Data] = [:]
+        var artworkBytes = 0
+        for tile in layout.pages.flatMap(\.tiles).prefix(128) {
+            let source: PhoneImages.Source?
+            if let reference = tile.customIconReference { source = .custom(reference) }
+            else if case .launchApp(let id) = tile.action, let version = (appByID[id] ?? AppProfiles.resolve(bundleID: id, apps: apps))?.iconVersion { source = .app(version) }
+            else if case .website(let url) = tile.action, tile.symbol == "globe" { source = .website(WebsiteIcons.origin(url)?.absoluteString ?? url) }
+            else { source = nil }
+            if let source, let data = images.widgetPNG(source), artworkBytes + data.count <= 512_000 { icons[tile.id.uuidString] = data; artworkBytes += data.count }
+        }
+        WidgetStore.save(.init(macID: selected.macID, macName: selected.name, boards: boards, updated: Date(), icons: icons, playback: state == .connected ? capabilities.playback : nil, playbackDate: lastPlaybackUpdate))
+    }
+    private var lastPlaybackUpdate = Date.distantPast
+    private var widgetArtworkTask: Task<Void, Never>?
+    @Published var widgetSettingsRequested = false
+    func openWidgetURL(_ url: URL) {
+        if url.scheme == "quicktile", url.host == "widgets" { widgetSettingsRequested = true; return }
+        guard WidgetStore.enabled, url.scheme == "quicktile", url.host == "tile", let id = UUID(uuidString: url.lastPathComponent),
+              let tile = layout?.pages.flatMap(\.tiles).first(where: { $0.id == id }) else { return }
+        Task { [weak self] in
+            guard let self else { return }
+            if case .timer = tile.action { self.execute(tile); return }
+            guard self.state.permitsActions else { self.error = "Connect to your Mac, then tap the tile again."; return }
+            self.execute(tile)
+        }
+    }
     private func persist() {
+        publishWidgetSnapshot()
         updateIdleTimer()
         updateDialPolling()
         guard !loading, allowSaving, let layout else { return }
@@ -747,8 +798,9 @@ import os
         case .welcome(let welcome):
             guard invite == nil, selected?.macID == welcome.macID, sessionID == nil else { channel?.close("Mac identity did not match the saved credential."); return }
             sessionID = welcome.sessionID; macPaused = false; clockOffset = welcome.serverTime.timeIntervalSinceNow
-            capabilities = welcome.capabilities; state = .connected; backoff = 1; authTimeout?.cancel(); activity = nil; error = nil
+            capabilities = welcome.capabilities; lastPlaybackUpdate = Date(); state = .connected; backoff = 1; authTimeout?.cancel(); activity = nil; error = nil
             frontmostBundleID = capabilities.frontmostBundleID
+            publishWidgetSnapshot()
             if newlyPaired { newlyPaired = false; choosingFirstBoard = layout?.pages.allSatisfy { $0.tiles.isEmpty } == true }
             controls.setAvailable(capabilities.controlsVersion == 1)
             updateIdleTimer(); refreshCatalog()
@@ -835,7 +887,9 @@ import os
         case .controls(let value): if state == .connected { controls.receive(id: message.id, value: value) }
         case .capabilities(let value):
             if state == .connected, capabilities != value {
+                let playbackChanged = capabilities.playback != value.playback
                 capabilities = value
+                if playbackChanged { lastPlaybackUpdate = Date(); publishWidgetSnapshot() }
                 frontmostBundleID = value.frontmostBundleID
                 controls.setAvailable(value.controlsVersion == 1)
             }

@@ -1,6 +1,15 @@
 import XCTest
 
 final class QuickTileUITests: XCTestCase {
+    @MainActor func testWidgetSetupExplainsStandByAndAuthentication() {
+        let app = launch(["--ui-testing-full-deck", "--ui-testing-widgets"])
+        app.buttons["settings"].tap()
+        XCTAssertTrue(app.switches["Enable widget controls"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["Home Screen & StandBy"].exists)
+        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: "label CONTAINS %@", "iOS may ask you to unlock")).firstMatch.exists)
+        screenshot("widget-setup")
+        XCUIDevice.shared.press(.home)
+    }
     override func setUpWithError() throws { continueAfterFailure = false }
     @MainActor private func launch(_ arguments: [String] = ["--ui-testing-full-deck"]) -> XCUIApplication {
         let app = XCUIApplication(); app.launchArguments = arguments; app.launch()

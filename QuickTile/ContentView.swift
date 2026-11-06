@@ -160,6 +160,7 @@ struct ContentView: View {
                 }
             }
             .animation(reduceMotion ? .easeOut(duration: 0.15) : .snappy(duration: 0.24, extraBounce: 0), value: model.error != nil)
+            .onChange(of: model.widgetSettingsRequested) { _, requested in if requested { showSettings = true; model.widgetSettingsRequested = false } }
             .onChange(of: model.error) { _, message in
                 if let message { UIAccessibility.post(notification: .announcement, argument: message) }
             }
@@ -755,6 +756,11 @@ struct TileFace: View {
                     Circle().fill(snapshot?.phase == .waiting ? Color.orange : snapshot?.phase == .running ? Color.green : Color.secondary)
                         .frame(width: 11, height: 11).overlay(Circle().stroke(.background, lineWidth: 2))
                         .offset(x: iconSize * 0.36, y: iconSize * 0.36)
+                } else if tile.playbackTarget != nil {
+                    let symbol = model.playbackSymbol(for: tile)
+                    Image(systemName: symbol).font(.system(size: iconSize * 0.55, weight: .regular)).foregroundStyle(.primary)
+                        .contentTransition(.symbolEffect(.replace, options: .speed(2.5)))
+                        .animation(.snappy(duration: 0.14), value: symbol)
                 } else if let reference = tile.customIconReference {
                     RemoteIcon(source: .custom(reference), store: model.images, fallback: tile.displaySymbol)
                 } else if case .launchApp(let id) = tile.action,

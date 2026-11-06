@@ -65,6 +65,7 @@ import QuickTileCore
         for event in [NSWorkspace.didLaunchApplicationNotification, NSWorkspace.didTerminateApplicationNotification, NSWorkspace.didMountNotification, NSWorkspace.didUnmountNotification] {
             observers.append(center.addObserver(forName: event, object: nil, queue: .main) { [weak self] _ in Task { @MainActor in await self?.refresh() } })
         }
+        executor.players.onChange = { [weak self] in self?.publishPlaybackCapabilities() }
         start()
         Task { await refresh() }
     }
@@ -200,6 +201,7 @@ import QuickTileCore
             guard let self, let actual else { return }
             actual.gate.revoke(); actual.tasks.values.forEach { $0.cancel() }; actual.catalogTask?.cancel()
             self.peers.removeValue(forKey: channel.id); self.pending.removeAll { $0.id == channel.id }; self.updateConnections()
+            self.executor.players.setObserving(self.peers.values.contains { $0.gate.authorized })
         }
         channel.start()
         Task { [weak actual] in
@@ -229,6 +231,7 @@ import QuickTileCore
             peer.features = Set((hello.features ?? []).prefix(32))
             let capabilities = capabilities(for: peer); peer.lastCapabilities = capabilities
             peer.channel.send(Envelope(id: message.id, payload: .welcome(Welcome(macID: macID, name: macName, sessionID: peer.gate.sessionID, capabilities: capabilities))))
+            executor.players.setObserving(true)
             updateConnections(); return
         }
         guard peer.gate.authorized else { peer.channel.close("Authentication required.", notifyingPeer: true); return }
@@ -286,6 +289,7 @@ import QuickTileCore
                         try Task.checkCancellation()
                         guard authorized() else { throw QuickTileError.unauthorized }
                         let result = try await self.executor.executeAssistant(plans, authorized: authorized)
+                        self.publishPlaybackCapabilities()
                         peer.channel.send(Envelope(id: message.id, payload: .result(result)))
                         peer.channel.send(Envelope(payload: .controls(BrightnessControl.shared.snapshot(displayID: peer.displayID))))
                     } catch is CancellationError {
@@ -331,6 +335,7 @@ import QuickTileCore
                         let result = try await self.executor.executeCommand(command, authorized: { !peer.channel.isClosed && peer.gate.authorized && !self.paused && self.devices.contains { $0.id == peer.identity } }, progress: { progress in
                             peer.channel.send(Envelope(id: message.id, payload: .result(.init(.accepted, "", sequenceProgress: progress))))
                         })
+                        self.publishPlaybackCapabilities()
                         peer.channel.send(Envelope(id: message.id, payload: .result(result)))
                     } catch is CancellationError {
                         peer.channel.send(Envelope(id: message.id, payload: .result(.init(.completed, "Stopped", outcome: .cancelled))))
@@ -338,6 +343,12 @@ import QuickTileCore
                 }
             } catch { peer.channel.send(Envelope(id: message.id, payload: .result(.init(.failed, error.localizedDescription)))) }
         default: peer.channel.close("Unexpected protocol message.", notifyingPeer: true)
+        }
+    }
+    private func publishPlaybackCapabilities() {
+        for peer in peers.values where peer.gate.authorized && !peer.channel.isClosed {
+            let value = capabilities(for: peer)
+            if peer.lastCapabilities != value { peer.lastCapabilities = value; peer.channel.send(Envelope(payload: .capabilities(value))) }
         }
     }
     private func capabilities(for peer: Peer) -> Capabilities {

@@ -1,779 +1,1726 @@
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 110;
-	objects = {
-
-/* Begin PBXBuildFile section */
-		51545445535454415200000D /* QuickTileCore in Frameworks */ = {isa = PBXBuildFile; productRef = 51545445535454415200000C /* QuickTileCore */; };
-		51545445535454415200002B /* QuickTileCore in Frameworks */ = {isa = PBXBuildFile; productRef = 51545445535454415200002A /* QuickTileCore */; };
-		5154544553545441520000C9 /* QuickTileMac/MacServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5154544553545441520000C8 /* QuickTileMac/MacServer.swift */; };
-		5154544553545441520000CB /* QuickTileMac/Catalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5154544553545441520000CA /* QuickTileMac/Catalog.swift */; };
-		5154544553545441520000CD /* QuickTileMac/ActionExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5154544553545441520000CC /* QuickTileMac/ActionExecutor.swift */; };
-		5154544553545441520000CF /* QuickTileMac/VolumeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5154544553545441520000CE /* QuickTileMac/VolumeControl.swift */; };
-		5154544553545441520000D1 /* QuickTileMac/ProcessRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5154544553545441520000D0 /* QuickTileMac/ProcessRunner.swift */; };
-		5154544553545441520000D3 /* QuickTileMac/AgentStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5154544553545441520000D2 /* QuickTileMac/AgentStatus.swift */; };
-		5154544553545441520000D5 /* QuickTileMac/MediaPlayerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5154544553545441520000D4 /* QuickTileMac/MediaPlayerControl.swift */; };
-		51545445535454415200012D /* QuickTileMac/GroqAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51545445535454415200012C /* QuickTileMac/GroqAssistant.swift */; };
-		51545445535454415200012F /* QuickTileMac/AssistantPlanValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51545445535454415200012E /* QuickTileMac/AssistantPlanValidation.swift */; };
-		515549434B54494C4500000B /* QuickTileCore in Frameworks */ = {isa = PBXBuildFile; productRef = 515549434B54494C4500000A /* QuickTileCore */; };
-		515549434B54494C4500001F /* QuickTileCore in Frameworks */ = {isa = PBXBuildFile; productRef = 515549434B54494C4500001E /* QuickTileCore */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		515454455354544152000014 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BA256980304D203A00DAC88D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = BA256987304D203A00DAC88D;
-			remoteInfo = QuickTile;
-		};
-		515454455354544152000032 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BA256980304D203A00DAC88D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 515549434B54494C45000028;
-			remoteInfo = QuickTileMac;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXFileReference section */
-		51545445535454415200000A /* QuickTileUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = QuickTileUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		515454455354544152000028 /* QuickTileMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = QuickTileMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5154544553545441520000C8 /* QuickTileMac/MacServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTileMac/MacServer.swift; sourceTree = SOURCE_ROOT; };
-		5154544553545441520000CA /* QuickTileMac/Catalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTileMac/Catalog.swift; sourceTree = SOURCE_ROOT; };
-		5154544553545441520000CC /* QuickTileMac/ActionExecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTileMac/ActionExecutor.swift; sourceTree = SOURCE_ROOT; };
-		5154544553545441520000CE /* QuickTileMac/VolumeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTileMac/VolumeControl.swift; sourceTree = SOURCE_ROOT; };
-		5154544553545441520000D0 /* QuickTileMac/ProcessRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTileMac/ProcessRunner.swift; sourceTree = SOURCE_ROOT; };
-		5154544553545441520000D2 /* QuickTileMac/AgentStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTileMac/AgentStatus.swift; sourceTree = SOURCE_ROOT; };
-		5154544553545441520000D4 /* QuickTileMac/MediaPlayerControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTileMac/MediaPlayerControl.swift; sourceTree = SOURCE_ROOT; };
-		51545445535454415200012C /* QuickTileMac/GroqAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTileMac/GroqAssistant.swift; sourceTree = SOURCE_ROOT; };
-		51545445535454415200012E /* QuickTileMac/AssistantPlanValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTileMac/AssistantPlanValidation.swift; sourceTree = SOURCE_ROOT; };
-		515549434B54494C45000020 /* QuickTileMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = QuickTileMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		BA256988304D203A00DAC88D /* QuickTile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickTile.app; sourceTree = BUILT_PRODUCTS_DIR; };
-/* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		51545445535454415200000B /* QuickTileUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = QuickTileUITests;
-			sourceTree = "<group>";
-		};
-		515454455354544152000029 /* QuickTileMacTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = QuickTileMacTests;
-			sourceTree = "<group>";
-		};
-		515549434B54494C45000021 /* QuickTileMac */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = QuickTileMac;
-			sourceTree = "<group>";
-		};
-		BA25698A304D203A00DAC88D /* QuickTile */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = QuickTile;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		51545445535454415200000F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			files = (
-				51545445535454415200000D /* QuickTileCore in Frameworks */,
-			);
-		};
-		51545445535454415200002D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			files = (
-				51545445535454415200002B /* QuickTileCore in Frameworks */,
-			);
-		};
-		515549434B54494C45000023 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			files = (
-				515549434B54494C4500001F /* QuickTileCore in Frameworks */,
-			);
-		};
-		BA256985304D203A00DAC88D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			files = (
-				515549434B54494C4500000B /* QuickTileCore in Frameworks */,
-			);
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		BA25697F304D203A00DAC88D = {
-			isa = PBXGroup;
-			children = (
-				BA25698A304D203A00DAC88D /* QuickTile */,
-				BA256989304D203A00DAC88D /* Products */,
-				515549434B54494C45000021 /* QuickTileMac */,
-				BA44E296304D970A003555E1 /* Recovered References */,
-				51545445535454415200000B /* QuickTileUITests */,
-				515454455354544152000029 /* QuickTileMacTests */,
-			);
-			sourceTree = "<group>";
-		};
-		BA256989304D203A00DAC88D /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				BA256988304D203A00DAC88D /* QuickTile.app */,
-				515549434B54494C45000020 /* QuickTileMac.app */,
-				51545445535454415200000A /* QuickTileUITests.xctest */,
-				515454455354544152000028 /* QuickTileMacTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		BA44E296304D970A003555E1 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				5154544553545441520000C8 /* QuickTileMac/MacServer.swift */,
-				5154544553545441520000CA /* QuickTileMac/Catalog.swift */,
-				5154544553545441520000CC /* QuickTileMac/ActionExecutor.swift */,
-				5154544553545441520000CE /* QuickTileMac/VolumeControl.swift */,
-				5154544553545441520000D0 /* QuickTileMac/ProcessRunner.swift */,
-				5154544553545441520000D2 /* QuickTileMac/AgentStatus.swift */,
-				5154544553545441520000D4 /* QuickTileMac/MediaPlayerControl.swift */,
-				51545445535454415200012C /* QuickTileMac/GroqAssistant.swift */,
-				51545445535454415200012E /* QuickTileMac/AssistantPlanValidation.swift */,
-			);
-			name = "Recovered References";
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
-
-/* Begin PBXNativeTarget section */
-		515454455354544152000016 /* QuickTileUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 515454455354544152000013 /* Build configuration list for PBXNativeTarget "QuickTileUITests" */;
-			buildPhases = (
-				51545445535454415200000E /* Sources */,
-				51545445535454415200000F /* Frameworks */,
-				515454455354544152000010 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				515454455354544152000015 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				51545445535454415200000B /* QuickTileUITests */,
-			);
-			name = QuickTileUITests;
-			packageProductDependencies = (
-				51545445535454415200000C /* QuickTileCore */,
-			);
-			productName = QuickTileUITests;
-			productReference = 51545445535454415200000A /* QuickTileUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-		515454455354544152000034 /* QuickTileMacTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 515454455354544152000031 /* Build configuration list for PBXNativeTarget "QuickTileMacTests" */;
-			buildPhases = (
-				51545445535454415200002C /* Sources */,
-				51545445535454415200002D /* Frameworks */,
-				51545445535454415200002E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				515454455354544152000033 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				515454455354544152000029 /* QuickTileMacTests */,
-			);
-			name = QuickTileMacTests;
-			packageProductDependencies = (
-				51545445535454415200002A /* QuickTileCore */,
-			);
-			productName = QuickTileMacTests;
-			productReference = 515454455354544152000028 /* QuickTileMacTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		515549434B54494C45000028 /* QuickTileMac */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 515549434B54494C45000027 /* Build configuration list for PBXNativeTarget "QuickTileMac" */;
-			buildPhases = (
-				515549434B54494C45000022 /* Sources */,
-				515549434B54494C45000023 /* Frameworks */,
-				515549434B54494C45000024 /* Resources */,
-				515549434B54494C45000099 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			fileSystemSynchronizedGroups = (
-				515549434B54494C45000021 /* QuickTileMac */,
-			);
-			name = QuickTileMac;
-			packageProductDependencies = (
-				515549434B54494C4500001E /* QuickTileCore */,
-			);
-			productName = QuickTileMac;
-			productReference = 515549434B54494C45000020 /* QuickTileMac.app */;
-			productType = "com.apple.product-type.application";
-		};
-		BA256987304D203A00DAC88D /* QuickTile */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = BA256993304D203A00DAC88D /* Build configuration list for PBXNativeTarget "QuickTile" */;
-			buildPhases = (
-				BA256984304D203A00DAC88D /* Sources */,
-				BA256985304D203A00DAC88D /* Frameworks */,
-				BA256986304D203A00DAC88D /* Resources */,
-			);
-			buildRules = (
-			);
-			fileSystemSynchronizedGroups = (
-				BA25698A304D203A00DAC88D /* QuickTile */,
-			);
-			name = QuickTile;
-			packageProductDependencies = (
-				515549434B54494C4500000A /* QuickTileCore */,
-			);
-			productName = QuickTile;
-			productReference = BA256988304D203A00DAC88D /* QuickTile.app */;
-			productType = "com.apple.product-type.application";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		BA256980304D203A00DAC88D /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2700;
-				LastUpgradeCheck = 2700;
-				TargetAttributes = {
-					BA256987304D203A00DAC88D = {
-						CreatedOnToolsVersion = 27.0;
-					};
-				};
-			};
-			buildConfigurationList = BA256983304D203A00DAC88D /* Build configuration list for PBXProject "QuickTile" */;
-			developmentRegion = en;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-				Base,
-			);
-			mainGroup = BA25697F304D203A00DAC88D;
-			minimizedProjectReferenceProxies = 1;
-			packageReferences = (
-				515549434B54494C45000001 /* XCLocalSwiftPackageReference "Shared" */,
-			);
-			preferredProjectObjectVersion = 77;
-			productRefGroup = BA256989304D203A00DAC88D /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				BA256987304D203A00DAC88D /* QuickTile */,
-				515549434B54494C45000028 /* QuickTileMac */,
-				515454455354544152000016 /* QuickTileUITests */,
-				515454455354544152000034 /* QuickTileMacTests */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		515454455354544152000010 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			files = (
-			);
-		};
-		51545445535454415200002E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			files = (
-			);
-		};
-		515549434B54494C45000024 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			files = (
-			);
-		};
-		BA256986304D203A00DAC88D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			files = (
-			);
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		515549434B54494C45000099 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			inputPaths = (
-				"$(SRCROOT)/Scripts/build-agent-helper.sh",
-				"$(SRCROOT)/Scripts/AgentEventHelper.swift",
-				"$(SRCROOT)/Shared/Sources/QuickTileCore/AgentActivity.swift",
-			);
-			outputPaths = (
-				"$(TARGET_BUILD_DIR)/$(CONTENTS_FOLDER_PATH)/Helpers/QuickTileAgentEvent",
-				"$(DERIVED_FILE_DIR)/QuickTileAgentHelper",
-			);
-			shellPath = /bin/sh;
-			shellScript = (
-				"/bin/sh \"$SRCROOT/Scripts/build-agent-helper.sh\"",
-			);
-		};
-/* End PBXShellScriptBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		51545445535454415200000E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			files = (
-			);
-		};
-		51545445535454415200002C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			files = (
-				5154544553545441520000C9 /* QuickTileMac/MacServer.swift in Sources */,
-				5154544553545441520000CB /* QuickTileMac/Catalog.swift in Sources */,
-				5154544553545441520000CD /* QuickTileMac/ActionExecutor.swift in Sources */,
-				5154544553545441520000CF /* QuickTileMac/VolumeControl.swift in Sources */,
-				5154544553545441520000D1 /* QuickTileMac/ProcessRunner.swift in Sources */,
-				5154544553545441520000D3 /* QuickTileMac/AgentStatus.swift in Sources */,
-				5154544553545441520000D5 /* QuickTileMac/MediaPlayerControl.swift in Sources */,
-				51545445535454415200012D /* QuickTileMac/GroqAssistant.swift in Sources */,
-				51545445535454415200012F /* QuickTileMac/AssistantPlanValidation.swift in Sources */,
-			);
-		};
-		515549434B54494C45000022 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			files = (
-			);
-		};
-		BA256984304D203A00DAC88D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			files = (
-			);
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		515454455354544152000015 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = BA256987304D203A00DAC88D /* QuickTile */;
-			targetProxy = 515454455354544152000014 /* PBXContainerItemProxy */;
-		};
-		515454455354544152000033 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 515549434B54494C45000028 /* QuickTileMac */;
-			targetProxy = 515454455354544152000032 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin XCBuildConfiguration section */
-		515454455354544152000011 /* Debug configuration for PBXNativeTarget "QuickTileUITests" */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = M26FDHM6XS;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				PRODUCT_BUNDLE_IDENTIFIER = sahil.QuickTileUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-				TEST_TARGET_NAME = QuickTile;
-			};
-			name = Debug;
-		};
-		515454455354544152000012 /* Release configuration for PBXNativeTarget "QuickTileUITests" */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = M26FDHM6XS;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				PRODUCT_BUNDLE_IDENTIFIER = sahil.QuickTileUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-				TEST_TARGET_NAME = QuickTile;
-			};
-			name = Release;
-		};
-		51545445535454415200002F /* Debug configuration for PBXNativeTarget "QuickTileMacTests" */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = M26FDHM6XS;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				PRODUCT_BUNDLE_IDENTIFIER = sahil.QuickTileMacTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		515454455354544152000030 /* Release configuration for PBXNativeTarget "QuickTileMacTests" */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = M26FDHM6XS;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				PRODUCT_BUNDLE_IDENTIFIER = sahil.QuickTileMacTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		515549434B54494C45000025 /* Debug configuration for PBXNativeTarget "QuickTileMac" */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Configuration/QuickTileMac.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = M26FDHM6XS;
-				ENABLE_APP_SANDBOX = NO;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Configuration/QuickTileMac-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = sahil.QuickTile.Mac;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_APPROACHABLE_CONCURRENCY = NO;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		515549434B54494C45000026 /* Release configuration for PBXNativeTarget "QuickTileMac" */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Configuration/QuickTileMac.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = M26FDHM6XS;
-				ENABLE_APP_SANDBOX = NO;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Configuration/QuickTileMac-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = sahil.QuickTile.Mac;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_APPROACHABLE_CONCURRENCY = NO;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		BA256991304D203A00DAC88D /* Debug configuration for PBXProject "QuickTile" */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = M26FDHM6XS;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-			};
-			name = Debug;
-		};
-		BA256992304D203A00DAC88D /* Release configuration for PBXProject "QuickTile" */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = M26FDHM6XS;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
-				SWIFT_COMPILATION_MODE = wholemodule;
-			};
-			name = Release;
-		};
-		BA256994304D203A00DAC88D /* Debug configuration for PBXNativeTarget "QuickTile" */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = M26FDHM6XS;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Configuration/QuickTile-Info.plist";
-				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
-				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
-				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
-				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
-				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
-				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
-				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
-				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = sahil.QuickTile;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = NO;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Debug;
-		};
-		BA256995304D203A00DAC88D /* Release configuration for PBXNativeTarget "QuickTile" */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = M26FDHM6XS;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Configuration/QuickTile-Info.plist";
-				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
-				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
-				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
-				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
-				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
-				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
-				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
-				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = sahil.QuickTile;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = NO;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		515454455354544152000013 /* Build configuration list for PBXNativeTarget "QuickTileUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				515454455354544152000011 /* Debug configuration for PBXNativeTarget "QuickTileUITests" */,
-				515454455354544152000012 /* Release configuration for PBXNativeTarget "QuickTileUITests" */,
-			);
-			defaultConfigurationName = Release;
-		};
-		515454455354544152000031 /* Build configuration list for PBXNativeTarget "QuickTileMacTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				51545445535454415200002F /* Debug configuration for PBXNativeTarget "QuickTileMacTests" */,
-				515454455354544152000030 /* Release configuration for PBXNativeTarget "QuickTileMacTests" */,
-			);
-			defaultConfigurationName = Release;
-		};
-		515549434B54494C45000027 /* Build configuration list for PBXNativeTarget "QuickTileMac" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				515549434B54494C45000025 /* Debug configuration for PBXNativeTarget "QuickTileMac" */,
-				515549434B54494C45000026 /* Release configuration for PBXNativeTarget "QuickTileMac" */,
-			);
-			defaultConfigurationName = Release;
-		};
-		BA256983304D203A00DAC88D /* Build configuration list for PBXProject "QuickTile" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BA256991304D203A00DAC88D /* Debug configuration for PBXProject "QuickTile" */,
-				BA256992304D203A00DAC88D /* Release configuration for PBXProject "QuickTile" */,
-			);
-			defaultConfigurationName = Release;
-		};
-		BA256993304D203A00DAC88D /* Build configuration list for PBXNativeTarget "QuickTile" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BA256994304D203A00DAC88D /* Debug configuration for PBXNativeTarget "QuickTile" */,
-				BA256995304D203A00DAC88D /* Release configuration for PBXNativeTarget "QuickTile" */,
-			);
-			defaultConfigurationName = Release;
-		};
-/* End XCConfigurationList section */
-
-/* Begin XCLocalSwiftPackageReference section */
-		515549434B54494C45000001 /* XCLocalSwiftPackageReference "Shared" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = Shared;
-		};
-/* End XCLocalSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		51545445535454415200000C /* QuickTileCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = QuickTileCore;
-		};
-		51545445535454415200002A /* QuickTileCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = QuickTileCore;
-		};
-		515549434B54494C4500000A /* QuickTileCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = QuickTileCore;
-		};
-		515549434B54494C4500001E /* QuickTileCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = QuickTileCore;
-		};
-/* End XCSwiftPackageProductDependency section */
-	};
-	rootObject = BA256980304D203A00DAC88D /* Project object */;
-	validationLevel = 1;
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>archiveVersion</key>
+	<string>1</string>
+	<key>classes</key>
+	<dict/>
+	<key>objectVersion</key>
+	<string>110</string>
+	<key>objects</key>
+	<dict>
+		<key>51545445535454415200000A</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.cfbundle</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>QuickTileUITests.xctest</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>51545445535454415200000B</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileSystemSynchronizedRootGroup</string>
+			<key>path</key>
+			<string>QuickTileUITests</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>51545445535454415200000C</key>
+		<dict>
+			<key>isa</key>
+			<string>XCSwiftPackageProductDependency</string>
+			<key>productName</key>
+			<string>QuickTileCore</string>
+		</dict>
+		<key>51545445535454415200000D</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>productRef</key>
+			<string>51545445535454415200000C</string>
+		</dict>
+		<key>51545445535454415200000E</key>
+		<dict>
+			<key>files</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+		</dict>
+		<key>51545445535454415200000F</key>
+		<dict>
+			<key>files</key>
+			<array>
+				<string>51545445535454415200000D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+		</dict>
+		<key>515454455354544152000010</key>
+		<dict>
+			<key>files</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+		</dict>
+		<key>515454455354544152000011</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>CODE_SIGN_STYLE</key>
+				<string>Automatic</string>
+				<key>DEVELOPMENT_TEAM</key>
+				<string>M26FDHM6XS</string>
+				<key>GENERATE_INFOPLIST_FILE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>18.0</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>sahil.QuickTileUITests</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SUPPORTED_PLATFORMS</key>
+				<string>iphoneos iphonesimulator</string>
+				<key>SWIFT_DEFAULT_ACTOR_ISOLATION</key>
+				<string>nonisolated</string>
+				<key>SWIFT_VERSION</key>
+				<string>5.0</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1</string>
+				<key>TEST_TARGET_NAME</key>
+				<string>QuickTile</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>515454455354544152000012</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>CODE_SIGN_STYLE</key>
+				<string>Automatic</string>
+				<key>DEVELOPMENT_TEAM</key>
+				<string>M26FDHM6XS</string>
+				<key>GENERATE_INFOPLIST_FILE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>18.0</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>sahil.QuickTileUITests</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SUPPORTED_PLATFORMS</key>
+				<string>iphoneos iphonesimulator</string>
+				<key>SWIFT_DEFAULT_ACTOR_ISOLATION</key>
+				<string>nonisolated</string>
+				<key>SWIFT_VERSION</key>
+				<string>5.0</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1</string>
+				<key>TEST_TARGET_NAME</key>
+				<string>QuickTile</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>515454455354544152000013</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>515454455354544152000011</string>
+				<string>515454455354544152000012</string>
+			</array>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>515454455354544152000014</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>BA256980304D203A00DAC88D</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>BA256987304D203A00DAC88D</string>
+			<key>remoteInfo</key>
+			<string>QuickTile</string>
+		</dict>
+		<key>515454455354544152000015</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>target</key>
+			<string>BA256987304D203A00DAC88D</string>
+			<key>targetProxy</key>
+			<string>515454455354544152000014</string>
+		</dict>
+		<key>515454455354544152000016</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>515454455354544152000013</string>
+			<key>buildPhases</key>
+			<array>
+				<string>51545445535454415200000E</string>
+				<string>51545445535454415200000F</string>
+				<string>515454455354544152000010</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>515454455354544152000015</string>
+			</array>
+			<key>fileSystemSynchronizedGroups</key>
+			<array>
+				<string>51545445535454415200000B</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>QuickTileUITests</string>
+			<key>packageProductDependencies</key>
+			<array>
+				<string>51545445535454415200000C</string>
+			</array>
+			<key>productName</key>
+			<string>QuickTileUITests</string>
+			<key>productReference</key>
+			<string>51545445535454415200000A</string>
+			<key>productType</key>
+			<string>com.apple.product-type.bundle.ui-testing</string>
+		</dict>
+		<key>515454455354544152000028</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.cfbundle</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>QuickTileMacTests.xctest</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>515454455354544152000029</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileSystemSynchronizedRootGroup</string>
+			<key>path</key>
+			<string>QuickTileMacTests</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>51545445535454415200002A</key>
+		<dict>
+			<key>isa</key>
+			<string>XCSwiftPackageProductDependency</string>
+			<key>productName</key>
+			<string>QuickTileCore</string>
+		</dict>
+		<key>51545445535454415200002B</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>productRef</key>
+			<string>51545445535454415200002A</string>
+		</dict>
+		<key>51545445535454415200002C</key>
+		<dict>
+			<key>files</key>
+			<array>
+				<string>5154544553545441520000C9</string>
+				<string>5154544553545441520000CB</string>
+				<string>5154544553545441520000CD</string>
+				<string>5154544553545441520000CF</string>
+				<string>5154544553545441520000D1</string>
+				<string>5154544553545441520000D3</string>
+				<string>5154544553545441520000D5</string>
+				<string>51545445535454415200012D</string>
+				<string>51545445535454415200012F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+		</dict>
+		<key>51545445535454415200002D</key>
+		<dict>
+			<key>files</key>
+			<array>
+				<string>51545445535454415200002B</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+		</dict>
+		<key>51545445535454415200002E</key>
+		<dict>
+			<key>files</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+		</dict>
+		<key>51545445535454415200002F</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>CODE_SIGN_STYLE</key>
+				<string>Automatic</string>
+				<key>DEVELOPMENT_TEAM</key>
+				<string>M26FDHM6XS</string>
+				<key>GENERATE_INFOPLIST_FILE</key>
+				<string>YES</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>@executable_path/../Frameworks</string>
+					<string>@loader_path/../Frameworks</string>
+				</array>
+				<key>MACOSX_DEPLOYMENT_TARGET</key>
+				<string>14.0</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>sahil.QuickTileMacTests</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SDKROOT</key>
+				<string>macosx</string>
+				<key>SUPPORTED_PLATFORMS</key>
+				<string>macosx</string>
+				<key>SWIFT_DEFAULT_ACTOR_ISOLATION</key>
+				<string>nonisolated</string>
+				<key>SWIFT_VERSION</key>
+				<string>5.0</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>515454455354544152000030</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>CODE_SIGN_STYLE</key>
+				<string>Automatic</string>
+				<key>DEVELOPMENT_TEAM</key>
+				<string>M26FDHM6XS</string>
+				<key>GENERATE_INFOPLIST_FILE</key>
+				<string>YES</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>@executable_path/../Frameworks</string>
+					<string>@loader_path/../Frameworks</string>
+				</array>
+				<key>MACOSX_DEPLOYMENT_TARGET</key>
+				<string>14.0</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>sahil.QuickTileMacTests</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SDKROOT</key>
+				<string>macosx</string>
+				<key>SUPPORTED_PLATFORMS</key>
+				<string>macosx</string>
+				<key>SWIFT_DEFAULT_ACTOR_ISOLATION</key>
+				<string>nonisolated</string>
+				<key>SWIFT_VERSION</key>
+				<string>5.0</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>515454455354544152000031</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>51545445535454415200002F</string>
+				<string>515454455354544152000030</string>
+			</array>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>515454455354544152000032</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>BA256980304D203A00DAC88D</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>515549434B54494C45000028</string>
+			<key>remoteInfo</key>
+			<string>QuickTileMac</string>
+		</dict>
+		<key>515454455354544152000033</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>target</key>
+			<string>515549434B54494C45000028</string>
+			<key>targetProxy</key>
+			<string>515454455354544152000032</string>
+		</dict>
+		<key>515454455354544152000034</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>515454455354544152000031</string>
+			<key>buildPhases</key>
+			<array>
+				<string>51545445535454415200002C</string>
+				<string>51545445535454415200002D</string>
+				<string>51545445535454415200002E</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>515454455354544152000033</string>
+			</array>
+			<key>fileSystemSynchronizedGroups</key>
+			<array>
+				<string>515454455354544152000029</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>QuickTileMacTests</string>
+			<key>packageProductDependencies</key>
+			<array>
+				<string>51545445535454415200002A</string>
+			</array>
+			<key>productName</key>
+			<string>QuickTileMacTests</string>
+			<key>productReference</key>
+			<string>515454455354544152000028</string>
+			<key>productType</key>
+			<string>com.apple.product-type.bundle.unit-test</string>
+		</dict>
+		<key>5154544553545441520000C8</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>QuickTileMac/MacServer.swift</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>5154544553545441520000C9</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5154544553545441520000C8</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5154544553545441520000CA</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>QuickTileMac/Catalog.swift</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>5154544553545441520000CB</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5154544553545441520000CA</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5154544553545441520000CC</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>QuickTileMac/ActionExecutor.swift</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>5154544553545441520000CD</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5154544553545441520000CC</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5154544553545441520000CE</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>QuickTileMac/VolumeControl.swift</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>5154544553545441520000CF</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5154544553545441520000CE</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5154544553545441520000D0</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>QuickTileMac/ProcessRunner.swift</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>5154544553545441520000D1</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5154544553545441520000D0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5154544553545441520000D2</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>QuickTileMac/AgentStatus.swift</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>5154544553545441520000D3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5154544553545441520000D2</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5154544553545441520000D4</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>QuickTileMac/MediaPlayerControl.swift</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>5154544553545441520000D5</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5154544553545441520000D4</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>51545445535454415200012C</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>QuickTileMac/GroqAssistant.swift</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>51545445535454415200012D</key>
+		<dict>
+			<key>fileRef</key>
+			<string>51545445535454415200012C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>51545445535454415200012E</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>QuickTileMac/AssistantPlanValidation.swift</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>51545445535454415200012F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>51545445535454415200012E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>515549434B54494C45000001</key>
+		<dict>
+			<key>isa</key>
+			<string>XCLocalSwiftPackageReference</string>
+			<key>relativePath</key>
+			<string>Shared</string>
+		</dict>
+		<key>515549434B54494C4500000A</key>
+		<dict>
+			<key>isa</key>
+			<string>XCSwiftPackageProductDependency</string>
+			<key>productName</key>
+			<string>QuickTileCore</string>
+		</dict>
+		<key>515549434B54494C4500000B</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>productRef</key>
+			<string>515549434B54494C4500000A</string>
+		</dict>
+		<key>515549434B54494C4500001E</key>
+		<dict>
+			<key>isa</key>
+			<string>XCSwiftPackageProductDependency</string>
+			<key>productName</key>
+			<string>QuickTileCore</string>
+		</dict>
+		<key>515549434B54494C4500001F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>productRef</key>
+			<string>515549434B54494C4500001E</string>
+		</dict>
+		<key>515549434B54494C45000020</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.application</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>QuickTileMac.app</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>515549434B54494C45000021</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileSystemSynchronizedRootGroup</string>
+			<key>path</key>
+			<string>QuickTileMac</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>515549434B54494C45000022</key>
+		<dict>
+			<key>files</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+		</dict>
+		<key>515549434B54494C45000023</key>
+		<dict>
+			<key>files</key>
+			<array>
+				<string>515549434B54494C4500001F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+		</dict>
+		<key>515549434B54494C45000024</key>
+		<dict>
+			<key>files</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+		</dict>
+		<key>515549434B54494C45000025</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>CODE_SIGN_ENTITLEMENTS</key>
+				<string>Configuration/QuickTileMac.entitlements</string>
+				<key>CODE_SIGN_STYLE</key>
+				<string>Automatic</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1</string>
+				<key>DEVELOPMENT_TEAM</key>
+				<string>M26FDHM6XS</string>
+				<key>ENABLE_APP_SANDBOX</key>
+				<string>NO</string>
+				<key>ENABLE_HARDENED_RUNTIME</key>
+				<string>YES</string>
+				<key>ENABLE_USER_SCRIPT_SANDBOXING</key>
+				<string>NO</string>
+				<key>GENERATE_INFOPLIST_FILE</key>
+				<string>YES</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Configuration/QuickTileMac-Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>@executable_path/../Frameworks</string>
+				</array>
+				<key>MACOSX_DEPLOYMENT_TARGET</key>
+				<string>14.0</string>
+				<key>MARKETING_VERSION</key>
+				<string>1.0</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>sahil.QuickTile.Mac</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SDKROOT</key>
+				<string>macosx</string>
+				<key>SUPPORTED_PLATFORMS</key>
+				<string>macosx</string>
+				<key>SWIFT_APPROACHABLE_CONCURRENCY</key>
+				<string>NO</string>
+				<key>SWIFT_DEFAULT_ACTOR_ISOLATION</key>
+				<string>nonisolated</string>
+				<key>SWIFT_VERSION</key>
+				<string>5.0</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>515549434B54494C45000026</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>CODE_SIGN_ENTITLEMENTS</key>
+				<string>Configuration/QuickTileMac.entitlements</string>
+				<key>CODE_SIGN_STYLE</key>
+				<string>Automatic</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1</string>
+				<key>DEVELOPMENT_TEAM</key>
+				<string>M26FDHM6XS</string>
+				<key>ENABLE_APP_SANDBOX</key>
+				<string>NO</string>
+				<key>ENABLE_HARDENED_RUNTIME</key>
+				<string>YES</string>
+				<key>ENABLE_USER_SCRIPT_SANDBOXING</key>
+				<string>NO</string>
+				<key>GENERATE_INFOPLIST_FILE</key>
+				<string>YES</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Configuration/QuickTileMac-Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>@executable_path/../Frameworks</string>
+				</array>
+				<key>MACOSX_DEPLOYMENT_TARGET</key>
+				<string>14.0</string>
+				<key>MARKETING_VERSION</key>
+				<string>1.0</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>sahil.QuickTile.Mac</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SDKROOT</key>
+				<string>macosx</string>
+				<key>SUPPORTED_PLATFORMS</key>
+				<string>macosx</string>
+				<key>SWIFT_APPROACHABLE_CONCURRENCY</key>
+				<string>NO</string>
+				<key>SWIFT_DEFAULT_ACTOR_ISOLATION</key>
+				<string>nonisolated</string>
+				<key>SWIFT_VERSION</key>
+				<string>5.0</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>515549434B54494C45000027</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>515549434B54494C45000025</string>
+				<string>515549434B54494C45000026</string>
+			</array>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>515549434B54494C45000028</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>515549434B54494C45000027</string>
+			<key>buildPhases</key>
+			<array>
+				<string>515549434B54494C45000022</string>
+				<string>515549434B54494C45000023</string>
+				<string>515549434B54494C45000024</string>
+				<string>515549434B54494C45000099</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>fileSystemSynchronizedGroups</key>
+			<array>
+				<string>515549434B54494C45000021</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>QuickTileMac</string>
+			<key>packageProductDependencies</key>
+			<array>
+				<string>515549434B54494C4500001E</string>
+			</array>
+			<key>productName</key>
+			<string>QuickTileMac</string>
+			<key>productReference</key>
+			<string>515549434B54494C45000020</string>
+			<key>productType</key>
+			<string>com.apple.product-type.application</string>
+		</dict>
+		<key>515549434B54494C45000099</key>
+		<dict>
+			<key>inputPaths</key>
+			<array>
+				<string>$(SRCROOT)/Scripts/build-agent-helper.sh</string>
+				<string>$(SRCROOT)/Scripts/AgentEventHelper.swift</string>
+				<string>$(SRCROOT)/Shared/Sources/QuickTileCore/AgentActivity.swift</string>
+			</array>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>outputPaths</key>
+			<array>
+				<string>$(TARGET_BUILD_DIR)/$(CONTENTS_FOLDER_PATH)/Helpers/QuickTileAgentEvent</string>
+				<string>$(DERIVED_FILE_DIR)/QuickTileAgentHelper</string>
+			</array>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<array>
+				<string>/bin/sh "$SRCROOT/Scripts/build-agent-helper.sh"</string>
+			</array>
+		</dict>
+		<key>BA25697F304D203A00DAC88D</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BA25698A304D203A00DAC88D</string>
+				<string>BA256989304D203A00DAC88D</string>
+				<string>515549434B54494C45000021</string>
+				<string>BA44E296304D970A003555E1</string>
+				<string>51545445535454415200000B</string>
+				<string>515454455354544152000029</string>
+				<string>515457494447455453000002</string>
+				<string>515457494447455453000003</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA256980304D203A00DAC88D</key>
+		<dict>
+			<key>attributes</key>
+			<dict>
+				<key>BuildIndependentTargetsInParallel</key>
+				<string>1</string>
+				<key>LastSwiftUpdateCheck</key>
+				<string>2700</string>
+				<key>LastUpgradeCheck</key>
+				<string>2700</string>
+				<key>TargetAttributes</key>
+				<dict>
+					<key>BA256987304D203A00DAC88D</key>
+					<dict>
+						<key>CreatedOnToolsVersion</key>
+						<string>27.0</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>buildConfigurationList</key>
+			<string>BA256983304D203A00DAC88D</string>
+			<key>developmentRegion</key>
+			<string>en</string>
+			<key>hasScannedForEncodings</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXProject</string>
+			<key>knownRegions</key>
+			<array>
+				<string>en</string>
+				<string>Base</string>
+			</array>
+			<key>mainGroup</key>
+			<string>BA25697F304D203A00DAC88D</string>
+			<key>minimizedProjectReferenceProxies</key>
+			<string>1</string>
+			<key>packageReferences</key>
+			<array>
+				<string>515549434B54494C45000001</string>
+			</array>
+			<key>preferredProjectObjectVersion</key>
+			<string>77</string>
+			<key>productRefGroup</key>
+			<string>BA256989304D203A00DAC88D</string>
+			<key>projectDirPath</key>
+			<string></string>
+			<key>projectRoot</key>
+			<string></string>
+			<key>targets</key>
+			<array>
+				<string>BA256987304D203A00DAC88D</string>
+				<string>515549434B54494C45000028</string>
+				<string>515454455354544152000016</string>
+				<string>515454455354544152000034</string>
+				<string>51545749444745545300000D</string>
+			</array>
+		</dict>
+		<key>BA256983304D203A00DAC88D</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>BA256991304D203A00DAC88D</string>
+				<string>BA256992304D203A00DAC88D</string>
+			</array>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>BA256984304D203A00DAC88D</key>
+		<dict>
+			<key>files</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+		</dict>
+		<key>BA256985304D203A00DAC88D</key>
+		<dict>
+			<key>files</key>
+			<array>
+				<string>515549434B54494C4500000B</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+		</dict>
+		<key>BA256986304D203A00DAC88D</key>
+		<dict>
+			<key>files</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+		</dict>
+		<key>BA256987304D203A00DAC88D</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>BA256993304D203A00DAC88D</string>
+			<key>buildPhases</key>
+			<array>
+				<string>BA256984304D203A00DAC88D</string>
+				<string>BA256985304D203A00DAC88D</string>
+				<string>BA256986304D203A00DAC88D</string>
+				<string>515457494447455453000011</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>fileSystemSynchronizedGroups</key>
+			<array>
+				<string>BA25698A304D203A00DAC88D</string>
+				<string>515457494447455453000003</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>QuickTile</string>
+			<key>packageProductDependencies</key>
+			<array>
+				<string>515549434B54494C4500000A</string>
+			</array>
+			<key>productName</key>
+			<string>QuickTile</string>
+			<key>productReference</key>
+			<string>BA256988304D203A00DAC88D</string>
+			<key>productType</key>
+			<string>com.apple.product-type.application</string>
+			<key>dependencies</key>
+			<array>
+				<string>51545749444745545300000F</string>
+			</array>
+		</dict>
+		<key>BA256988304D203A00DAC88D</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.application</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>QuickTile.app</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>BA256989304D203A00DAC88D</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BA256988304D203A00DAC88D</string>
+				<string>515549434B54494C45000020</string>
+				<string>51545445535454415200000A</string>
+				<string>515454455354544152000028</string>
+				<string>515457494447455453000001</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA25698A304D203A00DAC88D</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileSystemSynchronizedRootGroup</string>
+			<key>path</key>
+			<string>QuickTile</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA256991304D203A00DAC88D</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS</key>
+				<string>YES</string>
+				<key>CLANG_ANALYZER_NONNULL</key>
+				<string>YES</string>
+				<key>CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++20</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_WEAK</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_COMMA</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_DOCUMENTATION_COMMENTS</key>
+				<string>YES</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INFINITE_RECURSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_NON_LITERAL_NULL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_LITERAL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER</key>
+				<string>YES</string>
+				<key>CLANG_WARN_RANGE_LOOP_ANALYSIS</key>
+				<string>YES</string>
+				<key>CLANG_WARN_STRICT_PROTOTYPES</key>
+				<string>YES</string>
+				<key>CLANG_WARN_SUSPICIOUS_MOVE</key>
+				<string>YES</string>
+				<key>CLANG_WARN_UNGUARDED_AVAILABILITY</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>CLANG_WARN_UNREACHABLE_CODE</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>DEBUG_INFORMATION_FORMAT</key>
+				<string>dwarf</string>
+				<key>DEVELOPMENT_TEAM</key>
+				<string>M26FDHM6XS</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>ENABLE_TESTABILITY</key>
+				<string>YES</string>
+				<key>ENABLE_USER_SCRIPT_SANDBOXING</key>
+				<string>YES</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu17</string>
+				<key>GCC_DYNAMIC_NO_PIC</key>
+				<string>NO</string>
+				<key>GCC_NO_COMMON_BLOCKS</key>
+				<string>YES</string>
+				<key>GCC_OPTIMIZATION_LEVEL</key>
+				<string>0</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>LOCALIZATION_PREFERS_STRING_CATALOGS</key>
+				<string>YES</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>INCLUDE_SOURCE</string>
+				<key>MTL_FAST_MATH</key>
+				<string>YES</string>
+				<key>ONLY_ACTIVE_ARCH</key>
+				<string>YES</string>
+				<key>SWIFT_ACTIVE_COMPILATION_CONDITIONS</key>
+				<string>DEBUG $(inherited)</string>
+				<key>SWIFT_OPTIMIZATION_LEVEL</key>
+				<string>-Onone</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>BA256992304D203A00DAC88D</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS</key>
+				<string>YES</string>
+				<key>CLANG_ANALYZER_NONNULL</key>
+				<string>YES</string>
+				<key>CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++20</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_WEAK</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_COMMA</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_DOCUMENTATION_COMMENTS</key>
+				<string>YES</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INFINITE_RECURSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_NON_LITERAL_NULL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_LITERAL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER</key>
+				<string>YES</string>
+				<key>CLANG_WARN_RANGE_LOOP_ANALYSIS</key>
+				<string>YES</string>
+				<key>CLANG_WARN_STRICT_PROTOTYPES</key>
+				<string>YES</string>
+				<key>CLANG_WARN_SUSPICIOUS_MOVE</key>
+				<string>YES</string>
+				<key>CLANG_WARN_UNGUARDED_AVAILABILITY</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>CLANG_WARN_UNREACHABLE_CODE</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>DEBUG_INFORMATION_FORMAT</key>
+				<string>dwarf-with-dsym</string>
+				<key>DEVELOPMENT_TEAM</key>
+				<string>M26FDHM6XS</string>
+				<key>ENABLE_NS_ASSERTIONS</key>
+				<string>NO</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>ENABLE_USER_SCRIPT_SANDBOXING</key>
+				<string>YES</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu17</string>
+				<key>GCC_NO_COMMON_BLOCKS</key>
+				<string>YES</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>LOCALIZATION_PREFERS_STRING_CATALOGS</key>
+				<string>YES</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>MTL_FAST_MATH</key>
+				<string>YES</string>
+				<key>SWIFT_COMPILATION_MODE</key>
+				<string>wholemodule</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>BA256993304D203A00DAC88D</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>BA256994304D203A00DAC88D</string>
+				<string>BA256995304D203A00DAC88D</string>
+			</array>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>BA256994304D203A00DAC88D</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME</key>
+				<string>AccentColor</string>
+				<key>CODE_SIGN_STYLE</key>
+				<string>Automatic</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1</string>
+				<key>DEVELOPMENT_TEAM</key>
+				<string>M26FDHM6XS</string>
+				<key>ENABLE_HARDENED_RUNTIME</key>
+				<string>YES</string>
+				<key>ENABLE_PREVIEWS</key>
+				<string>YES</string>
+				<key>GENERATE_INFOPLIST_FILE</key>
+				<string>YES</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Configuration/QuickTile-Info.plist</string>
+				<key>INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]</key>
+				<string>YES</string>
+				<key>INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]</key>
+				<string>YES</string>
+				<key>INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]</key>
+				<string>YES</string>
+				<key>INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]</key>
+				<string>YES</string>
+				<key>INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]</key>
+				<string>YES</string>
+				<key>INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]</key>
+				<string>YES</string>
+				<key>INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]</key>
+				<string>UIStatusBarStyleDefault</string>
+				<key>INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]</key>
+				<string>UIStatusBarStyleDefault</string>
+				<key>INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad</key>
+				<string>UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight</string>
+				<key>INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone</key>
+				<string>UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>18.0</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>@executable_path/Frameworks</string>
+				<key>LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]</key>
+				<string>@executable_path/../Frameworks</string>
+				<key>MARKETING_VERSION</key>
+				<string>1.0</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>sahil.QuickTile</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>STRING_CATALOG_GENERATE_SYMBOLS</key>
+				<string>YES</string>
+				<key>SUPPORTED_PLATFORMS</key>
+				<string>iphoneos iphonesimulator</string>
+				<key>SUPPORTS_MACCATALYST</key>
+				<string>NO</string>
+				<key>SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD</key>
+				<string>NO</string>
+				<key>SWIFT_APPROACHABLE_CONCURRENCY</key>
+				<string>NO</string>
+				<key>SWIFT_DEFAULT_ACTOR_ISOLATION</key>
+				<string>nonisolated</string>
+				<key>SWIFT_EMIT_LOC_STRINGS</key>
+				<string>YES</string>
+				<key>SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY</key>
+				<string>YES</string>
+				<key>SWIFT_VERSION</key>
+				<string>5.0</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1</string>
+				<key>CODE_SIGN_ENTITLEMENTS</key>
+				<string>Configuration/QuickTile.entitlements</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>BA256995304D203A00DAC88D</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME</key>
+				<string>AccentColor</string>
+				<key>CODE_SIGN_STYLE</key>
+				<string>Automatic</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1</string>
+				<key>DEVELOPMENT_TEAM</key>
+				<string>M26FDHM6XS</string>
+				<key>ENABLE_HARDENED_RUNTIME</key>
+				<string>YES</string>
+				<key>ENABLE_PREVIEWS</key>
+				<string>YES</string>
+				<key>GENERATE_INFOPLIST_FILE</key>
+				<string>YES</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Configuration/QuickTile-Info.plist</string>
+				<key>INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]</key>
+				<string>YES</string>
+				<key>INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]</key>
+				<string>YES</string>
+				<key>INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]</key>
+				<string>YES</string>
+				<key>INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]</key>
+				<string>YES</string>
+				<key>INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]</key>
+				<string>YES</string>
+				<key>INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]</key>
+				<string>YES</string>
+				<key>INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]</key>
+				<string>UIStatusBarStyleDefault</string>
+				<key>INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]</key>
+				<string>UIStatusBarStyleDefault</string>
+				<key>INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad</key>
+				<string>UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight</string>
+				<key>INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone</key>
+				<string>UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>18.0</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>@executable_path/Frameworks</string>
+				<key>LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]</key>
+				<string>@executable_path/../Frameworks</string>
+				<key>MARKETING_VERSION</key>
+				<string>1.0</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>sahil.QuickTile</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>STRING_CATALOG_GENERATE_SYMBOLS</key>
+				<string>YES</string>
+				<key>SUPPORTED_PLATFORMS</key>
+				<string>iphoneos iphonesimulator</string>
+				<key>SUPPORTS_MACCATALYST</key>
+				<string>NO</string>
+				<key>SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD</key>
+				<string>NO</string>
+				<key>SWIFT_APPROACHABLE_CONCURRENCY</key>
+				<string>NO</string>
+				<key>SWIFT_DEFAULT_ACTOR_ISOLATION</key>
+				<string>nonisolated</string>
+				<key>SWIFT_EMIT_LOC_STRINGS</key>
+				<string>YES</string>
+				<key>SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY</key>
+				<string>YES</string>
+				<key>SWIFT_VERSION</key>
+				<string>5.0</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1</string>
+				<key>CODE_SIGN_ENTITLEMENTS</key>
+				<string>Configuration/QuickTile.entitlements</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>BA44E296304D970A003555E1</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>5154544553545441520000C8</string>
+				<string>5154544553545441520000CA</string>
+				<string>5154544553545441520000CC</string>
+				<string>5154544553545441520000CE</string>
+				<string>5154544553545441520000D0</string>
+				<string>5154544553545441520000D2</string>
+				<string>5154544553545441520000D4</string>
+				<string>51545445535454415200012C</string>
+				<string>51545445535454415200012E</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Recovered References</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>515457494447455453000001</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>explicitFileType</key>
+			<string>wrapper.app-extension</string>
+			<key>path</key>
+			<string>QuickTileWidgets.appex</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>515457494447455453000002</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileSystemSynchronizedRootGroup</string>
+			<key>path</key>
+			<string>QuickTileWidgets</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>515457494447455453000003</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileSystemSynchronizedRootGroup</string>
+			<key>path</key>
+			<string>WidgetShared</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>515457494447455453000004</key>
+		<dict>
+			<key>isa</key>
+			<string>XCSwiftPackageProductDependency</string>
+			<key>productName</key>
+			<string>QuickTileCore</string>
+		</dict>
+		<key>515457494447455453000005</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>productRef</key>
+			<string>515457494447455453000004</string>
+		</dict>
+		<key>515457494447455453000006</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>buildActionMask</key>
+			<integer>2147483647</integer>
+			<key>files</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<integer>0</integer>
+		</dict>
+		<key>515457494447455453000007</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>buildActionMask</key>
+			<integer>2147483647</integer>
+			<key>files</key>
+			<array>
+				<string>515457494447455453000005</string>
+			</array>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<integer>0</integer>
+		</dict>
+		<key>515457494447455453000008</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>buildActionMask</key>
+			<integer>2147483647</integer>
+			<key>files</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<integer>0</integer>
+		</dict>
+		<key>51545749444745545300000A</key>
+		<dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>SWIFT_VERSION</key>
+				<string>5.0</string>
+				<key>SWIFT_DEFAULT_ACTOR_ISOLATION</key>
+				<string>nonisolated</string>
+				<key>CODE_SIGN_STYLE</key>
+				<string>Automatic</string>
+				<key>DEVELOPMENT_TEAM</key>
+				<string>M26FDHM6XS</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>sahil.QuickTile.Widgets</string>
+				<key>MARKETING_VERSION</key>
+				<string>1.0</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SUPPORTED_PLATFORMS</key>
+				<string>iphoneos iphonesimulator</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>18.0</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1</string>
+				<key>SUPPORTS_MACCATALYST</key>
+				<string>NO</string>
+				<key>APPLICATION_EXTENSION_API_ONLY</key>
+				<string>YES</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>GENERATE_INFOPLIST_FILE</key>
+				<string>YES</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Configuration/QuickTileWidgets-Info.plist</string>
+				<key>CODE_SIGN_ENTITLEMENTS</key>
+				<string>Configuration/QuickTile.entitlements</string>
+				<key>SWIFT_ACTIVE_COMPILATION_CONDITIONS</key>
+				<string>$(inherited) QUICKTILE_WIDGET_EXTENSION</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks</string>
+			</dict>
+		</dict>
+		<key>51545749444745545300000B</key>
+		<dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>SWIFT_VERSION</key>
+				<string>5.0</string>
+				<key>SWIFT_DEFAULT_ACTOR_ISOLATION</key>
+				<string>nonisolated</string>
+				<key>CODE_SIGN_STYLE</key>
+				<string>Automatic</string>
+				<key>DEVELOPMENT_TEAM</key>
+				<string>M26FDHM6XS</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>sahil.QuickTile.Widgets</string>
+				<key>MARKETING_VERSION</key>
+				<string>1.0</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SUPPORTED_PLATFORMS</key>
+				<string>iphoneos iphonesimulator</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>18.0</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1</string>
+				<key>SUPPORTS_MACCATALYST</key>
+				<string>NO</string>
+				<key>APPLICATION_EXTENSION_API_ONLY</key>
+				<string>YES</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>GENERATE_INFOPLIST_FILE</key>
+				<string>YES</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Configuration/QuickTileWidgets-Info.plist</string>
+				<key>CODE_SIGN_ENTITLEMENTS</key>
+				<string>Configuration/QuickTile.entitlements</string>
+				<key>SWIFT_ACTIVE_COMPILATION_CONDITIONS</key>
+				<string>$(inherited) QUICKTILE_WIDGET_EXTENSION</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks</string>
+			</dict>
+		</dict>
+		<key>51545749444745545300000C</key>
+		<dict>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+			<key>buildConfigurations</key>
+			<array>
+				<string>51545749444745545300000A</string>
+				<string>51545749444745545300000B</string>
+			</array>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>defaultConfigurationIsVisible</key>
+			<integer>0</integer>
+		</dict>
+		<key>51545749444745545300000D</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>QuickTileWidgets</string>
+			<key>productName</key>
+			<string>QuickTileWidgets</string>
+			<key>productReference</key>
+			<string>515457494447455453000001</string>
+			<key>productType</key>
+			<string>com.apple.product-type.app-extension</string>
+			<key>buildConfigurationList</key>
+			<string>51545749444745545300000C</string>
+			<key>buildPhases</key>
+			<array>
+				<string>515457494447455453000006</string>
+				<string>515457494447455453000007</string>
+				<string>515457494447455453000008</string>
+			</array>
+			<key>fileSystemSynchronizedGroups</key>
+			<array>
+				<string>515457494447455453000002</string>
+				<string>515457494447455453000003</string>
+			</array>
+			<key>packageProductDependencies</key>
+			<array>
+				<string>515457494447455453000004</string>
+			</array>
+			<key>dependencies</key>
+			<array/>
+			<key>buildRules</key>
+			<array/>
+		</dict>
+		<key>51545749444745545300000E</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>containerPortal</key>
+			<string>BA256980304D203A00DAC88D</string>
+			<key>proxyType</key>
+			<integer>1</integer>
+			<key>remoteGlobalIDString</key>
+			<string>51545749444745545300000D</string>
+			<key>remoteInfo</key>
+			<string>QuickTileWidgets</string>
+		</dict>
+		<key>51545749444745545300000F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>target</key>
+			<string>51545749444745545300000D</string>
+			<key>targetProxy</key>
+			<string>51545749444745545300000E</string>
+		</dict>
+		<key>515457494447455453000010</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>fileRef</key>
+			<string>515457494447455453000001</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>RemoveHeadersOnCopy</string>
+				</array>
+			</dict>
+		</dict>
+		<key>515457494447455453000011</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXCopyFilesBuildPhase</string>
+			<key>buildActionMask</key>
+			<integer>2147483647</integer>
+			<key>dstPath</key>
+			<string></string>
+			<key>dstSubfolderSpec</key>
+			<integer>13</integer>
+			<key>files</key>
+			<array>
+				<string>515457494447455453000010</string>
+			</array>
+			<key>name</key>
+			<string>Embed Widget Extension</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>rootObject</key>
+	<string>BA256980304D203A00DAC88D</string>
+	<key>validationLevel</key>
+	<string>1</string>
+</dict>
+</plist>

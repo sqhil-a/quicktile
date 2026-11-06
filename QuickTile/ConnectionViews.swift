@@ -73,11 +73,18 @@ struct MacPickerView: View {
     }
 }
 struct SettingsView: View {
+    @AppStorage("widgetControlsEnabled", store: UserDefaults(suiteName: WidgetStore.group)) private var widgetControlsEnabled = false
     @EnvironmentObject private var model: PhoneModel
     @Environment(\.dismiss) private var dismiss
     var body: some View {
         NavigationStack {
             Form {
+                Section {
+                    Toggle("Enable widget controls", isOn: $widgetControlsEnabled)
+                        .onChange(of: widgetControlsEnabled) { _, _ in model.publishWidgetSnapshot() }
+                } header: { Text("Home Screen & StandBy") } footer: {
+                    Text("Add QuickTile widgets from the widget gallery. iOS may ask you to unlock before running a control. Keep your Mac awake on the same local network. Voice, timers, agent requests and longer workflows open QuickTile. Disabling removes widget access immediately.")
+                }
                 if model.layout != nil {
                     Section("Appearance") {
                         Picker("Theme", selection: setting(\.theme, fallback: .system)) { ForEach(Theme.allCases, id: \.self) { Text($0.rawValue.capitalized).tag($0) } }.accessibilityIdentifier("themePicker")
@@ -98,7 +105,7 @@ struct SettingsView: View {
                         Label(model.capabilities.volume ? "Output volume supported" : "Output uses hardware volume controls", systemImage: "speaker.wave.2")
                         Button("Refresh catalog") { model.refreshCatalog() }
                     } else { Text("Connect to your Mac to see available controls.").foregroundStyle(.secondary) }
-                    Text("Media keys control the current player. Allow Accessibility on your Mac to use media and keyboard controls.").font(.caption).foregroundStyle(.secondary)
+                    Text("Spotify and Music may request Automation on your Mac. Browser media and keyboard controls need Accessibility.").font(.caption).foregroundStyle(.secondary)
                 }
                 Section("QuickTile") {
                     NavigationLink("Privacy policy") { PrivacyPolicyView() }.accessibilityIdentifier("privacyPolicy")

@@ -31,12 +31,23 @@ import QuickTileCore
     // Visible views retain their resource even if NSCache evicts it.
     private var liveResources: [String: WeakResource] = [:]
     private var pending: [String: IconResource] = [:]
+    var onWidgetArtworkReady: (() -> Void)?
+    private let widgetPNGs = NSCache<NSString, NSData>()
+    func widgetPNG(_ source: Source) -> Data? {
+        if let data = widgetPNGs.object(forKey: source.key as NSString) { return data as Data }
+        guard let image = (liveResources[source.key]?.value ?? resources.object(forKey: source.key as NSString))?.image else { return nil }
+        let format = UIGraphicsImageRendererFormat(); format.scale = 2
+        let data = UIGraphicsImageRenderer(size: CGSize(width: 64, height: 64), format: format).image { _ in image.draw(in: CGRect(x: 0, y: 0, width: 64, height: 64)) }.pngData()
+        if let data { widgetPNGs.setObject(data as NSData, forKey: source.key as NSString) }
+        return data
+    }
     private let disk: ImageDisk
     private var websites: [(Source, IconResource)] = []
     private var websiteLoads = 0
     var requestApp: ((String) -> Void)?
     init(directory: URL) {
         disk = ImageDisk(directory: directory)
+        widgetPNGs.countLimit = 128
         resources.countLimit = 192 // At most ~48 MB of 256 px decoded images, plus visible resources.
     }
     func resource(_ source: Source) -> IconResource {
@@ -100,8 +111,10 @@ import QuickTileCore
     }
     private func finish(_ key: String, image: UIImage?) {
         let resource = pending.removeValue(forKey: key) ?? liveResources[key]?.value ?? resources.object(forKey: key as NSString)
+        widgetPNGs.removeObject(forKey: key as NSString)
         resource?.image = image; resource?.loading = false
         resource?.retryAfter = image == nil ? Date().addingTimeInterval(key.hasPrefix("web-") ? 1800 : 60) : .distantPast
+        if image != nil { onWidgetArtworkReady?() }
     }
     private func pumpWebsites() {
         while websiteLoads < 2, !websites.isEmpty {

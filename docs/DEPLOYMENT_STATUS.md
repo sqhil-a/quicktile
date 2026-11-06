@@ -24,3 +24,7 @@ Export succeeded with automatic provisioning. This does not establish App Store 
 - Resolve the optional Mac private brightness adapter's distribution policy and support matrix.
 
 App Store upload and release have not been performed. No unsigned Mac download is advertised as a release.
+
+## November 6 development update
+
+The local iPhone development build is now 10 and the installed Mac companion is build 9, including interactive Home Screen/StandBy widgets and automatic player routing. The historical build-6 App Store IPA above does not contain these updates; rebuild and export with the widget extension and matching App Group profiles before uploading a current release. This development update does not close the release gates.

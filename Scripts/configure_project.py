@@ -52,3 +52,7 @@ for name,tid in [('QuickTile','BA256987304D203A00DAC88D'),('QuickTileMac',uid(40
 <ProfileAction buildConfiguration="Release" shouldUseLaunchSchemeArgsEnv="YES" useCustomWorkingDirectory="NO" debugDocumentVersioning="YES"><BuildableProductRunnable runnableDebuggingMode="0">{ref}</BuildableProductRunnable></ProfileAction>
 <AnalyzeAction buildConfiguration="Debug"/><ArchiveAction buildConfiguration="Release" revealArchiveInOrganizer="YES"/>
 </Scheme>''')
+
+# Include the embedded widgets and shared App Intent membership on regeneration.
+import sys
+subprocess.run([sys.executable, str(root / "Scripts/add_widget_target.py")], check=True)

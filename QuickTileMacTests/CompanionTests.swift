@@ -4,6 +4,21 @@ import AppKit
 import QuickTileCore
 
 final class CompanionTests: XCTestCase {
+    @MainActor func testLiveSpotifyStateReadDoesNotLaunchPlayers() async throws {
+        guard ProcessInfo.processInfo.environment["QUICKTILE_TEST_MEDIA_STATE"] == "1" else { throw XCTSkip("Live player state read is opt-in") }
+        guard !NSRunningApplication.runningApplications(withBundleIdentifier: MediaPlayer.spotify.rawValue).isEmpty else { throw XCTSkip("Spotify is not running") }
+        let musicWasRunning = !NSRunningApplication.runningApplications(withBundleIdentifier: MediaPlayer.music.rawValue).isEmpty
+        let control = MediaPlayerControl()
+        for _ in 0..<10 {
+            await control.refreshRunning()
+            if control.snapshots.first(where: { $0.target == MediaPlayer.spotify.rawValue })?.state != .unknown { break }
+            try await Task.sleep(for: .milliseconds(100))
+        }
+        XCTAssertEqual(!NSRunningApplication.runningApplications(withBundleIdentifier: MediaPlayer.music.rawValue).isEmpty, musicWasRunning)
+        guard let observed = control.snapshots.first(where: { $0.target == MediaPlayer.spotify.rawValue }), observed.state != .unknown else { throw XCTSkip("Spotify Automation permission is needed for state observation") }
+        XCTAssertTrue([PlaybackState.playing, .paused].contains(observed.state))
+    }
+
     func testAgentLifecycleEventsStayMinimalAndPrioritizeWaiting() throws {
         let running = try XCTUnwrap(AgentEvent(provider: .codex, input: Data(#"{"session_id":"s1","hook_event_name":"PostToolUse","tool_name":"Bash","tool_input":{"command":"secret"}}"#.utf8)))
         let waiting = try XCTUnwrap(AgentEvent(provider: .codex, input: Data(#"{"session_id":"s2","hook_event_name":"PermissionRequest","tool_name":"Bash"}"#.utf8)))

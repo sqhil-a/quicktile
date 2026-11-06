@@ -18,20 +18,20 @@ import QuickTileCore
                                  notes: ["Media controls send the Mac’s media keys to the current player.",
                                           "Keyboard events use physical ANSI key positions. Secure input or an app may ignore them."])
         value.controlsVersion = 1
-        value.mediaKeys = AXIsProcessTrusted()
+        value.mediaKeys = AXIsProcessTrusted() || players.canUseNativePlayer
         value.sequenceVersion = 1
         value.features = ["sequences.v1", "structured-results.v1", "display-selection.v1", "control-mute.v1", "frontmost-app.v1", "playback-state.v1", "media-player-adapters.v1", "agent-health.v1"]
         value.brightness = BrightnessControl.shared.snapshot().brightness != nil
         value.frontmostBundleID = NSWorkspace.shared.frontmostApplication?.bundleIdentifier
-        // Media-key delivery cannot reveal the active player’s playback state.
-        value.playback = [.init(target: "system", state: .unknown)] + players.snapshots
+        // Report observed adapter state; unknown stays neutral for system-key fallback.
+        value.playback = [players.systemSnapshot] + players.snapshots
         return value
     }
     init(catalog: Catalog, agents: AgentStatusStore) { self.catalog = catalog; self.agents = agents }
     var capabilities: Capabilities {
         var value = baseCapabilities
         value.keyboard = AXIsProcessTrusted()
-        value.mediaKeys = AXIsProcessTrusted()
+        value.mediaKeys = AXIsProcessTrusted() || players.canUseNativePlayer
         value.agents = agents.snapshots
         value.agentSources = AgentProvider.allCases.flatMap { provider in [AgentSource.desktop, .terminal].map { agents.snapshot(provider, source: $0) } }
         return value
@@ -197,6 +197,9 @@ import QuickTileCore
             return "Sent keys"
         case .volume(let command): try VolumeControl().execute(command); return "Updated volume"
         case .media(let command), .music(let command):
+            if try await players.executeAutomatic(command) { return "Sent playback control" }
+            let runningBrowsers = NSWorkspace.shared.runningApplications.contains { $0.bundleIdentifier.map(MediaPlayerControl.browsers.contains) ?? false }
+            guard runningBrowsers || players.hasRunningPlayer else { throw QuickTileError.failed("Start playback on your Mac first.") }
             guard AXIsProcessTrusted() else { throw QuickTileError.failed("Allow QuickTileMac in Accessibility on your Mac.") }
             let events = try Self.mediaEvents(command).compactMap(\.cgEvent)
             guard events.count == 2 else { throw QuickTileError.failed("Could not send media key.") }

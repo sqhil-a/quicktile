@@ -226,7 +226,7 @@ struct TileEditorView: View {
                     Text("Mac playback").tag("")
                     ForEach(MediaPlayer.allCases) { Text($0.title).tag($0.rawValue) }
                 }
-                Text(targetOverride == nil ? "Uses the Mac’s media keys, including browser video. Playback state is unavailable for system media keys." : "Uses this player’s supported controls and observes playback state. Allow Automation on the Mac when first used.").font(.caption).foregroundStyle(.secondary)
+                Text(targetOverride == nil ? "Automatically controls a running player, including Spotify. Browser playback uses Mac media keys. Play/pause reflects confirmed player state; allow Automation on your Mac when first used." : "Uses this player’s supported controls and observes playback state. Allow Automation on the Mac when first used.").font(.caption).foregroundStyle(.secondary)
             }
         case .shortcut:
             Section("Shortcuts on your Mac") {
