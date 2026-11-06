@@ -758,9 +758,7 @@ struct TileFace: View {
                         .offset(x: iconSize * 0.36, y: iconSize * 0.36)
                 } else if tile.playbackTarget != nil {
                     let symbol = model.playbackSymbol(for: tile)
-                    Image(systemName: symbol).font(.system(size: iconSize * 0.55, weight: .regular)).foregroundStyle(.primary)
-                        .contentTransition(.symbolEffect(.replace, options: .speed(2.5)))
-                        .animation(.snappy(duration: 0.14), value: symbol)
+                    PlaybackGlyph(symbol: symbol).font(.system(size: iconSize * 0.55, weight: .regular)).foregroundStyle(.primary)
                 } else if let reference = tile.customIconReference {
                     RemoteIcon(source: .custom(reference), store: model.images, fallback: tile.displaySymbol)
                 } else if case .launchApp(let id) = tile.action,
@@ -770,9 +768,7 @@ struct TileFace: View {
                     RemoteIcon(source: .website(WebsiteIcons.origin(url)?.absoluteString ?? url), store: model.images, fallback: "globe").id(url)
                 } else {
                     let symbol = tile.playbackTarget == nil ? tile.displaySymbol : model.playbackSymbol(for: tile)
-                    Image(systemName: symbol).font(.system(size: iconSize * 0.55, weight: .regular)).foregroundStyle(.primary)
-                        .contentTransition(.symbolEffect(.replace, options: .speed(2.5)))
-                        .animation(.snappy(duration: 0.14), value: symbol)
+                    PlaybackGlyph(symbol: symbol).font(.system(size: iconSize * 0.55, weight: .regular)).foregroundStyle(.primary)
                 }
                 if model.busyTiles.contains(tile.id) {
                     if let progress = model.sequenceProgress[tile.id] {
@@ -820,9 +816,8 @@ private struct TimerTileView: View {
                 feedback(value.finished ? .success : .soft)
             } label: {
                 VStack(spacing: 10) {
-                    Image(systemName: value.finished ? "checkmark" : value.deadline == nil ? "play.fill" : "pause.fill")
+                    PlaybackGlyph(symbol: value.finished ? "checkmark" : value.deadline == nil ? "play.fill" : "pause.fill")
                         .font(.system(size: 20, weight: .medium))
-                        .contentTransition(.symbolEffect(.replace, options: .speed(2.5)))
                     Text(String(format: "%02d:%02d", remaining / 60, remaining % 60))
                         .font(.system(size: 32, weight: .medium, design: .rounded).monospacedDigit())
                         .minimumScaleFactor(0.5).lineLimit(1)

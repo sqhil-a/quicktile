@@ -28,3 +28,5 @@ App Store upload and release have not been performed. No unsigned Mac download i
 ## November 6 development update
 
 The local iPhone development build is now 10 and the installed Mac companion is build 9, including interactive Home Screen/StandBy widgets and automatic player routing. The historical build-6 App Store IPA above does not contain these updates; rebuild and export with the widget extension and matching App Group profiles before uploading a current release. This development update does not close the release gates.
+
+Playback motion follow-up: iPhone development build 11 and Mac build 10 replace the earlier local builds with stable short crossfades, fixed widget feedback geometry and faster confirmed playback readback. These remain development builds.

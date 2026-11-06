@@ -75,7 +75,7 @@ struct WidgetTileButton: View {
     }
     private var label: some View {
         Group {
-            if let playbackSymbol { Image(systemName: playbackSymbol).font(.title2).contentTransition(.symbolEffect(.replace, options: .speed(2.5))) }
+            if let playbackSymbol { PlaybackGlyph(symbol: playbackSymbol).font(.title2) }
             else if let artwork, let image = UIImage(data: artwork) { Image(uiImage: image).resizable().scaledToFit().padding(10) }
             else { Image(systemName: tile.displaySymbol).font(.title2) }
         }.frame(maxWidth: .infinity, maxHeight: .infinity).contentShape(Rectangle())
@@ -87,18 +87,19 @@ struct WidgetSurface<Content: View>: View {
     var symbol = "desktopcomputer"
     var pager: WidgetPageIntent? = nil
     @ViewBuilder var content: Content
+    private var headerText: String {
+        if let feedback = entry.snapshot.feedback, let date = entry.snapshot.feedbackDate, entry.date.timeIntervalSince(date) < 30 { return feedback }
+        return title
+    }
     var body: some View {
         VStack(spacing: 8) {
             HStack {
-                Image(systemName: symbol); Text(title).lineLimit(1); Spacer(minLength: 0)
+                Image(systemName: symbol); Text(headerText).lineLimit(1).frame(height: 18, alignment: .leading); Spacer(minLength: 0)
                 if let pager { Button(intent: pager) { Image(systemName: "chevron.right").frame(width: 24, height: 24) }.buttonStyle(.plain).accessibilityLabel("Next tiles") }
             }.font(.caption.weight(.medium)).foregroundStyle(.secondary)
             if entry.snapshot.macID == nil {
                 Link(destination: URL(string: "quicktile://widgets")!) { VStack(spacing: 6) { Image(systemName: "square.grid.2x2").font(.title); Text("Set up in QuickTile").font(.caption) }.frame(maxWidth: .infinity, maxHeight: .infinity) }
             } else { content }
-            if let feedback = entry.snapshot.feedback, let date = entry.snapshot.feedbackDate, entry.date.timeIntervalSince(date) < 30 {
-                Text(feedback).font(.caption2).lineLimit(2).foregroundStyle(.secondary)
-            }
         }.containerBackground(.background, for: .widget)
     }
 }
@@ -153,7 +154,7 @@ struct MacControlsWidget: Widget {
             WidgetSurface(entry: entry, title: entry.snapshot.macName) {
                 VStack(spacing: 6) {
                     HStack(spacing: 8) {
-                        Button(intent: RunWidgetTile("control.play")) { Image(systemName: entry.playbackSymbol("system")).contentTransition(.symbolEffect(.replace, options: .speed(2.5))).frame(maxWidth: .infinity, maxHeight: .infinity) }.accessibilityLabel("Toggle Mac playback")
+                        Button(intent: RunWidgetTile("control.play")) { PlaybackGlyph(symbol: entry.playbackSymbol("system")).frame(maxWidth: .infinity, maxHeight: .infinity) }.accessibilityLabel("Toggle Mac playback")
                         Button(intent: RunWidgetTile("control.next")) { Image(systemName: "forward.fill").frame(maxWidth: .infinity, maxHeight: .infinity) }.accessibilityLabel("Next track")
                     }
                     ForEach(["volume", "brightness"], id: \.self) { kind in

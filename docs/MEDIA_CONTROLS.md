@@ -9,3 +9,9 @@ Spotify's installed scripting dictionary supplies `playpause`, `play`, `pause`, 
 Browser media-key dispatch still requires Accessibility. macOS owns routing for sources without a supported state adapter; QuickTile cannot claim an observed universal browser playback state. Start media on the Mac first. This public-interface implementation does not use private MediaRemote APIs or claim to observe every player.
 
 Verification: deterministic active-player selection, closed-player exclusion, pause/play glyph mapping, existing matching media-key press/release tests and the companion suite pass. A passive live Spotify read test is opt-in; this run skipped it because the test process did not have Spotify Automation permission. No playback was changed during the test run. Physical Spotify toggle/permission and browser/simultaneous-source checks remain release gates.
+
+The follow-up motion fix uses one stable SwiftUI image with a 120 ms opacity transition, shared by media/timer controls and widgets. Reduce Motion disables it. There is no stacked spring or travelling symbol-replacement effect. Native control and state readback share one AppleScript transaction; polling is suppressed during the command, and transient read failures retain a confirmed state for at most five seconds before returning unknown. No optimistic playback flip is invented.
+
+Spotify playback-change notifications also trigger a short coalesced, verified state read; notification metadata is ignored. This avoids waiting for the periodic fallback poll after external changes.
+
+Widget feedback occupies the existing fixed-height header rather than inserting/removing a footer, so acknowledgement updates do not resize the controls or move the playback glyph.
